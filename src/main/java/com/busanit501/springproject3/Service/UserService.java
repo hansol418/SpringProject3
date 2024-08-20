@@ -22,12 +22,6 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public String registerUser(String username, String password, String email) {
-        // 중복 사용자 확인
-        Optional<User> existingUser = Optional.ofNullable(userRepository.findByUsername(username));
-        if (existingUser.isPresent()) {
-            throw new RuntimeException("User already exists with username: " + username);
-        }
-
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setPassword(passwordEncoder.encode(password)); // 비밀번호 암호화
@@ -35,7 +29,16 @@ public class UserService {
 
         userRepository.save(newUser);
 
-        // JWT 생성 및 반환
-        return jwtUtil.generateToken(username);
+        return jwtUtil.generateAccessToken(username); // 액세스 토큰 생성 및 반환
+    }
+
+    // 사용자 인증 메서드 추가
+    public boolean authenticateUser(String username, String password) {
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findByUsername(username));
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return passwordEncoder.matches(password, user.getPassword());
+        }
+        return false;
     }
 }

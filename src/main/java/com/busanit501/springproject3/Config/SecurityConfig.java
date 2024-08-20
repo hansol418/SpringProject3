@@ -23,6 +23,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated() // 나머지 요청은 인증 필요
                 )
                 .formLogin(formLogin -> formLogin
+                        .loginPage("/api/auth/login")
                         .loginProcessingUrl("/perform_login") // 로그인 처리 URL 설정
                         .defaultSuccessUrl("/home", true) // 로그인 성공 시 리다이렉트 URL 설정
                         .permitAll() // 로그인 페이지 접근 허용
