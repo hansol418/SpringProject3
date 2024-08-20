@@ -2,7 +2,9 @@ package com.busanit501.springproject3.Service;
 
 import com.busanit501.springproject3.Entity.User;
 import com.busanit501.springproject3.Repository.UserRepository;
+import com.busanit501.springproject3.Util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,19 +15,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    @Autowired
+    private JwtUtil jwtUtil;
 
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
-    }
+    public String registerUser(String username, String password, String email) {
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(passwordEncoder.encode(password)); // 비밀번호 암호화
+        newUser.setEmail(email);
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+        userRepository.save(newUser);
+
+        return jwtUtil.generateToken(username); // JWT 생성 및 반환
+}
 }

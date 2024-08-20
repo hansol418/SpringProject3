@@ -1,7 +1,8 @@
 package com.busanit501.springproject3.Controller;
 
+// UserController.java
 import com.busanit501.springproject3.Entity.User;
-import com.busanit501.springproject3.Service.UserService;
+import com.busanit501.springproject3.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,32 +13,33 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        return userRepository.findAll();
     }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+        return userRepository.findById(id).orElse(null);
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
+        return userRepository.save(user);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        user.setId(id);
-        return userService.saveUser(user);
+    public User updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+        User user = userRepository.findById(id).orElseThrow();
+        user.setUsername(userDetails.getUsername());
+        user.setEmail(userDetails.getEmail());
+        return userRepository.save(user);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+        userRepository.deleteById(id);
     }
 }
-
