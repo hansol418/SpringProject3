@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -29,6 +29,16 @@ public class UserService {
 
         userRepository.save(newUser);
 
-        return jwtUtil.generateToken(username); // JWT 생성 및 반환
-}
+        return jwtUtil.generateAccessToken(username); // 액세스 토큰 생성 및 반환
+    }
+
+    // 사용자 인증 메서드 추가
+    public boolean authenticateUser(String username, String password) {
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findByUsername(username));
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return passwordEncoder.matches(password, user.getPassword());
+        }
+        return false;
+    }
 }
