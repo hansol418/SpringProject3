@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="styles1.css"> <!-- CSS 파일 경로를 설정하세요 -->
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="your-logo.png" alt="Your Logo"> <!-- 로고 이미지 경로를 설정하세요 -->
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#">이미지 분석</a></li>
+      <li><a href="#">공구 검색</a></li>
+      <li><a href="#">커뮤니티</a></li>
+      <li><a href="#">로그인</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="main-content">
+    <div class="image-container">
+      <img src="placeholder-image.png" alt="Main Image"> <!-- 메인 이미지 경로를 설정하세요 -->
+    </div>
+    <div class="description">
+      <h2>공구에 대한 랜덤설명</h2>
+      <p>상세설명</p>
+      <hr>
+      <p>--------------------------------------------------</p>
+    </div>
+  </section>
+  <section class="tool-name">
+    <h3>랜덤 공구 명칭</h3>
+  </section>
+
+  <nav>
+    <ul>
+      <li><a th:href="@{/board/list}">게시글 목록</a></li>
+      <li><a th:href="@{/user}">사용자 목록</a></li>
+      <li><a th:href="@{/board-replie}">댓글 목록</a></li>
+      <li><a th:href="@{/board-manager}">매니저 목록</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <p>[Footer]</p>
+</footer>
+
+</body>
+</html>

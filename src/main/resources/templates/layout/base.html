@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{layout/base.html}">
+<html lang="ko">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-    <link rel="stylesheet" href="styles1.css">
+    <title th:replace="${title} :: title">Title</title>
+    <link rel="stylesheet" href="styles1.css"> <!-- 적절한 CSS 파일 경로로 변경하세요 -->
   </head>
   <body>
     <header>
@@ -24,21 +21,8 @@
       </nav>
     </header>
 
-    <main>
-      <section class="main-content">
-        <div class="image-container">
-          <img src="placeholder-image.png" alt="Main Image">
-        </div>
-        <div class="description">
-          <h2>공구에 대한 랜덤설명</h2>
-          <p>상세설명</p>
-          <hr>
-          <p>--------------------------------------------------</p>
-        </div>
-      </section>
-      <section class="tool-name">
-        <h3>랜덤 공구 명칭</h3>
-      </section>
+    <main layout:fragment="content">
+      <!-- 여기에 메인 콘텐츠가 삽입됩니다 -->
     </main>
 
     <footer>
