@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload</title>
+  <style>
+    #preview {
+      max-width: 300px;
+      max-height: 300px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<h1>Upload an Image</h1>
+<!-- 이미지 미리보기 영역 -->
+<div>
+  <h2>Image Preview:</h2>
+  <img id="preview" src="#" alt="Image Preview" style="display: none;"/>
+</div>
+<!-- 이미지 업로드 폼 -->
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
+  <button type="submit">Upload</button>
+</form>
+
+<script>
+  function previewImage(event) {
+    const preview = document.getElementById('preview');
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function() {
+      preview.src = reader.result;
+      preview.style.display = 'block';
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+</body>
+</html>
