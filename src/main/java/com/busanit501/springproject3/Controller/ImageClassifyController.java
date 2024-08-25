@@ -50,10 +50,12 @@ public class ImageClassifyController {
             HttpEntity responseEntity = response.getEntity();
             String apiResult = EntityUtils.toString(responseEntity, "UTF-8");
 
+            // Extract the predicted label
             String predictedLabel = extractPredictedLabel(apiResult);
             String videoUrl = getVideoUrl(predictedLabel);
 
-            result.put("analysisResult", apiResult);
+            // Only return the predicted label and the video URL
+            result.put("predictedLabel", predictedLabel);
             result.put("videoUrl", videoUrl);
 
             if (!convFile.delete()) {
@@ -75,7 +77,7 @@ public class ImageClassifyController {
             return rootNode.path("predicted_class_label").asText();
         } catch (IOException e) {
             e.printStackTrace();
-            return ""; // 에러 발생 시 빈 문자열 반환
+            return ""; // Return an empty string if there's an error
         }
     }
 
@@ -88,7 +90,7 @@ public class ImageClassifyController {
             case "설지":
                 return "https://www.youtube.com/embed/LxG6_qX2SBA?t=13";
             default:
-                return "https://www.youtube.com/watch?v=82W7E20T6UQ";
+                return "https://www.youtube.com/embed/82W7E20T6UQ";
         }
     }
 }
