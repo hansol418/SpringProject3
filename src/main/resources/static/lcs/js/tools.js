@@ -1,32 +1,33 @@
-document.getElementById('fileInput').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const formData = new FormData();
-        formData.append('imageFile', file);
+document.getElementById("imageInput").addEventListener("change", function() {
+    const file = this.files[0];
 
-        // Show image preview
+    if (file) {
+        // 이미지 미리보기 기능
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('imagePreview').src = e.target.result;
-        };
+            document.getElementById("previewImage").src = e.target.result;
+        }
         reader.readAsDataURL(file);
 
-        // Send image to server and get the analysis result
-        fetch('/analyze', {
-            method: 'POST',
-            body: formData,
+        // FormData 생성 및 이미지 업로드 처리
+        const formData = new FormData();
+        formData.append("image", file);
+
+        fetch("/classify", {
+            method: "POST",
+            body: formData
         })
             .then(response => response.json())
             .then(data => {
-                document.getElementById('result').innerHTML = `
-                        <p>Class: ${data.predicted_class_label}</p>
-                        <p>Confidence: ${data.confidence}</p>
-                        <p>Details: ${JSON.stringify(data.class_confidences)}</p>
-                    `;
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // predictedLabel만 표시
+                    document.getElementById("predictedLabel").textContent = `분석 결과: ${data.predictedLabel}`;
+                    // YouTube URL 업데이트
+                    document.getElementById("videoFrame").src = data.videoUrl;
+                }
             })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('result').innerText = 'Error analyzing image.';
-            });
+            .catch(error => console.error("Error:", error));
     }
 });
