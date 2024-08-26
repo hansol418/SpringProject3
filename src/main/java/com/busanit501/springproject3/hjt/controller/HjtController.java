@@ -30,13 +30,12 @@ public class HjtController {
         return "/tool/list";
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/detail/{id}")
     public String toolDetail(@PathVariable Long id, Model model) {
         HjtEntity detail = hjtService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
         model.addAttribute("detail", detail);
         log.info(detail);
-        log.info("hello");
-        return "/tool/Detail";
+        return "/tool/detail";
         }
     }
 
