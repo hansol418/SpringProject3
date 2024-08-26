@@ -20,7 +20,7 @@ public class HjtEntity extends BaseEntity {
     private String tool_name;
 
     @Lob
-    @Column(nullable = false)
+    @Column(columnDefinition = "longtext")
     private String description;
 
     @Column
