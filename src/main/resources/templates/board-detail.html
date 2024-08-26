@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Board Detail</title>
+</head>
+<body>
+<h1>Board Detail</h1>
+<p><strong>ID:</strong> <span th:text="${board.id}"></span></p>
+<p><strong>Title:</strong> <span th:text="${board.title}"></span></p>
+<p><strong>Writer:</strong> <span th:text="${board.writer}"></span></p>
+<p><strong>Content:</strong> <span th:text="${board.boardContent}"></span></p>
+<a href="/boards">Back to List</a>
+</body>
+</html>
