@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Board Detail</title>
+  <style>
+    .file-image {
+      max-width: 500px; /* Adjust as needed */
+      max-height: 300px; /* Adjust as needed */
+    }
+  </style>
+</head>
+<body>
+<h1>Board Detail</h1>
+<div>
+  <p><strong>ID:</strong> <span th:text="${board.id}"></span></p>
+  <p><strong>Title:</strong> <span th:text="${board.title}"></span></p>
+  <p><strong>Writer:</strong> <span th:text="${board.writer}"></span></p>
+  <p><strong>Content:</strong></p>
+  <pre th:text="${board.boardContent}"></pre>
+
+  <!-- Display image if filename exists -->
+  <div class="item-file" th:if="${board.filename != null}">
+    첨부 파일:
+    <a class="file-link" th:href="@{/files/{filename}(filename=${board.filename})}" th:text="${board.filename}"></a>
+    <br/>
+    <img class="file-image" th:src="@{/files/{filename}(filename=${board.filename})}" alt="Attached image"/>
+  </div>
+
+  <div>
+    작성시간: <span th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></span>
+  </div>
+  <div th:if="${board.modifyDate != null}">
+    수정날짜: <span th:text="${#temporals.format(board.modifyDate, 'yyyy-MM-dd HH:mm')}"></span>
+  </div>
+</div>
+<a href="/boards">Back to List</a>
+</body>
+</html>
