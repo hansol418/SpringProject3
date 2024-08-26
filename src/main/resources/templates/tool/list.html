@@ -6,11 +6,31 @@
 </head>
 <body>
 <h1>Tool List</h1>
-<!--<ul>-->
-<!--  <li th:each="tool : ${toolList}">-->
-<!--    <a th:href="@{/tool/{id}(id=${tool.id})}" th:text="${tool.name}"></a> - -->
-<!--    <span th:text="${tool.description}"></span>-->
-<!--  </li>-->
-<!--</ul>-->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>img_text</th>
+        <th>modDate</th>
+        <th>regDate</th>
+        <th>Link</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tool : ${list}">
+        <td th:text="${tool.id}">1</td>
+        <td th:text="${tool.tool_name}">Tool Name</td>
+        <td th:text="${tool.description}">Description</td>
+        <td th:text="${tool.img_text}">img_text</td>
+        <td th:text="${tool.modDate}">modDate</td>
+        <td th:text="${tool.regDate}">regDate</td>
+        <td><a th:href="@{/tool/detail/{id}(id=${tool.id})}">View Details</a></td>
+    </tr>
+
+    </tbody>
+</table>
+
 </body>
 </html>

@@ -6,8 +6,32 @@
 </head>
 <body>
 <h1>Tool Detail</h1>
-<!--<h1 th:text="${tool.name}">Tool Name</h1>-->
-<!--<p th:text="${tool.detailedDescription}">Detailed Description</p>-->
-<!--&lt;!&ndash;<a href="/">Back to list</a>&ndash;&gt;-->
+<div>
+    <label>ID:</label>
+    <span th:text="${detail.id}"></span>
+</div>
+<div>
+    <label>Tool_name:</label>
+    <span th:text="${detail.tool_name}">Tool Name</span>
+</div>
+<div>
+    <label>Description:</label>
+    <span th:text="${detail.description}">Description</span>
+</div>
+<div>
+    <label>img_text:</label>
+    <span th:text="${detail.img_text}">img_text</span>
+</div>
+<div>
+    <label>modDate:</label>
+    <span th:text="${detail.modDate}">modDate</span>
+</div>
+<div>
+    <label>regDate:</label>
+    <span th:text="${detail.regDate}">regDate</span>
+</div>
+<div>
+    <a href="/tool/list">Back to List</a>
+</div>
 </body>
 </html>
