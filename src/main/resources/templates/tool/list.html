@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Tool List</h1>
+<ul>
+  <li th:each="tool : ${toolList}">
+    <a th:href="@{/tool/{id}(id=${tool.id})}" th:text="${tool.name}"></a> -
+    <span th:text="${tool.description}"></span>
+  </li>
+</ul>
+</body>
+</html>

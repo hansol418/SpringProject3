@@ -6,17 +6,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/toolDetail")
 @Log4j2
+@Controller
 @RequiredArgsConstructor
+@RequestMapping("/tool")
 public class HjtController {
 
     @Autowired
@@ -24,21 +24,19 @@ public class HjtController {
 
     @GetMapping("/list")
     public String listTools(Model model) {
-        List<HjtEntity> tools = hjtService.findAll();
-        model.addAttribute("tools", tools);
-        return "redirect:/list";
+        List<HjtEntity> list = hjtService.findAll();
+        model.addAttribute("list", list);
+        log.info(list);
+        return "/tool/list";
     }
 
-    @GetMapping("/tool/{id}")
+    @GetMapping("/detail")
     public String toolDetail(@PathVariable Long id, Model model) {
-        HjtEntity hjtEntity = hjtService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
-        model.addAttribute("tool", hjtEntity);
-        return "redirect:/";
+        HjtEntity detail = hjtService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
+        model.addAttribute("detail", detail);
+        log.info(detail);
+        log.info("hello");
+        return "/tool/Detail";
+        }
     }
 
-    @GetMapping
-    public String getOne(Long id, Model model) {
-        model.addAttribute("getOne", hjtService.findById(id));
-        return "redirect:/list";
-    }
-}
