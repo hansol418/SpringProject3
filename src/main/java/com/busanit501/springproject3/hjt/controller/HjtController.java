@@ -26,13 +26,19 @@ public class HjtController {
     public String listTools(Model model) {
         List<HjtEntity> tools = hjtService.findAll();
         model.addAttribute("tools", tools);
-        return "tool_list";
+        return "redirect:/hammor/list";
     }
 
     @GetMapping("/tool/{id}")
     public String toolDetail(@PathVariable Long id, Model model) {
         HjtEntity hjtEntity = hjtService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
         model.addAttribute("tool", hjtEntity);
-        return "tool_detail";
+        return "redirect:/hammor/detail";
+    }
+
+    @GetMapping
+    public String getOne(Long id, Model model) {
+        model.addAttribute("getOne", hjtService.findById(id));
+        return "redirect:/list";
     }
 }
