@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create Board</title>
+</head>
+<body>
+<h1>Create New Board</h1>
+<form action="/boards" method="post" th:object="${boardDto}">
+  <div>
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" required />
+  </div>
+  <div>
+    <label>Writer:</label>
+    <input type="text" th:field="*{writer}" required />
+  </div>
+  <div>
+    <label>Content:</label>
+    <textarea th:field="*{boardContent}" required></textarea>
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+<a href="/boards">Back to List</a>
+</body>
+</html>
