@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.repository;
-
+//
 import com.busanit501.springproject3.msy.entity.Board;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

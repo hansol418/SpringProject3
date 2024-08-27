@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.entity;
-
+//
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

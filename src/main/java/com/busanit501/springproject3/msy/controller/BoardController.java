@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.controller;
-
+//
 import com.busanit501.springproject3.msy.dto.BoardDto;
 import com.busanit501.springproject3.msy.entity.Comment;
 import com.busanit501.springproject3.msy.service.BoardService;
