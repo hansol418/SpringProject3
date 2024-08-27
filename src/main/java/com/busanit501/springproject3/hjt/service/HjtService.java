@@ -4,7 +4,6 @@ import com.busanit501.springproject3.hjt.domain.HjtEntity;
 import com.busanit501.springproject3.hjt.repository.HjtRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +27,7 @@ public class HjtService {
     public Optional<HjtEntity> findById(Long id) {
         return hjtRepository.findById(id);
     }
+
+
 }
 
