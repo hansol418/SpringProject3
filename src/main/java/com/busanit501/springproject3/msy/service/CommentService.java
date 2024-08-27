@@ -1,10 +1,10 @@
-package com.busanit501.springproject3.service;
-
-import com.busanit501.springproject3.dto.CommentDto;
-import com.busanit501.springproject3.entity.Board;
-import com.busanit501.springproject3.entity.Comment;
-import com.busanit501.springproject3.repository.BoardRepository;
-import com.busanit501.springproject3.repository.CommentRepository;
+package com.busanit501.springproject3.msy.service;
+//
+import com.busanit501.springproject3.msy.dto.CommentDto;
+import com.busanit501.springproject3.msy.entity.Board;
+import com.busanit501.springproject3.msy.entity.Comment;
+import com.busanit501.springproject3.msy.repository.BoardRepository;
+import com.busanit501.springproject3.msy.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

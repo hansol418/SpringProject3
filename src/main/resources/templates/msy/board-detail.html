@@ -2,117 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Board Detail</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f4f4f4;
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-    }
-
-    button {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .item-file {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background-color: #fff;
-    }
-
-    .file-link {
-      display: inline-block;
-      color: #007BFF;
-      text-decoration: none;
-      margin-bottom: 10px;
-    }
-
-    .file-link:hover {
-      text-decoration: underline;
-    }
-
-    .file-image {
-      max-width: 500px;
-      max-height: 300px;
-      display: block;
-      margin-top: 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .content-section {
-      margin-top: 20px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      background-color: #fff;
-    }
-
-    .content-section p, .content-section pre {
-      margin: 0 0 10px;
-    }
-
-    .content-section pre {
-      white-space: pre-wrap; /* Ensures content wraps properly */
-      background-color: #f7f7f7;
-      padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-    }
-
-    .date-info {
-      margin-top: 10px;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .action-buttons {
-      margin-top: 20px;
-    }
-
-    .action-buttons button {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 4px;
-      margin-right: 10px;
-    }
-
-    .action-buttons button:hover {
-      background-color: #0056b3;
-    }
-
-    .action-buttons a {
-      margin: 0;
-    }
-  </style>
+  <!--//-->
 </head>
 <body>
 <h1>Board Detail</h1>
@@ -166,6 +56,130 @@
     </li>
   </ul>
 </div>
+
+<!-- Comment Form -->
+<div class="form-container">
+  <h2>Add Comment</h2>
+  <form th:action="@{|/comment/create/${board.id}|}" method="post">
+    <textarea name="content2" id="content2" placeholder="Write your comment here..."></textarea>
+    <input type="submit" value="Add Comment"/>
+  </form>
+</div>
+
+
+</body>
+</html>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+
+  button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .item-file {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  .file-link {
+    display: inline-block;
+    color: #007BFF;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+
+  .file-link:hover {
+    text-decoration: underline;
+  }
+
+  .file-image {
+    max-width: 500px;
+    max-height: 300px;
+    display: block;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .content-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  .content-section p, .content-section pre {
+    margin: 0 0 10px;
+  }
+
+  .content-section pre {
+    white-space: pre-wrap; /* Ensures content wraps properly */
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+
+  .date-info {
+    margin-top: 10px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .action-buttons {
+    margin-top: 20px;
+  }
+
+  .action-buttons button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  .action-buttons button:hover {
+    background-color: #0056b3;
+  }
+
+  .action-buttons a {
+    margin: 0;
+  }
+</style>
 <style>
   .comment-list {
     margin-top: 20px;
@@ -221,14 +235,6 @@
     margin: 0;
   }
 </style>
-<!-- Comment Form -->
-<div class="form-container">
-  <h2>Add Comment</h2>
-  <form th:action="@{|/comment/create/${board.id}|}" method="post">
-    <textarea name="content2" id="content2" placeholder="Write your comment here..."></textarea>
-    <input type="submit" value="Add Comment"/>
-  </form>
-</div>
 <style>
   .comment-list, .form-container {
     margin-top: 20px;
@@ -316,6 +322,3 @@
     background-color: #218838;
   }
 </style>
-
-</body>
-</html>

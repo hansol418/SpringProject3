@@ -1,8 +1,8 @@
-package com.busanit501.springproject3.service;
-
-import com.busanit501.springproject3.dto.BoardDto;
-import com.busanit501.springproject3.entity.Board;
-import com.busanit501.springproject3.repository.BoardRepository;
+package com.busanit501.springproject3.msy.service;
+//
+import com.busanit501.springproject3.msy.dto.BoardDto;
+import com.busanit501.springproject3.msy.entity.Board;
+import com.busanit501.springproject3.msy.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class BoardService {

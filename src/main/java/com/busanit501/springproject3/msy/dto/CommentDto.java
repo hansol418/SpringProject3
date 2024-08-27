@@ -1,7 +1,7 @@
-package com.busanit501.springproject3.dto;
-
-import com.busanit501.springproject3.entity.Board;
-import com.busanit501.springproject3.entity.Comment;
+package com.busanit501.springproject3.msy.dto;
+//
+import com.busanit501.springproject3.msy.entity.Board;
+import com.busanit501.springproject3.msy.entity.Comment;
 import lombok.*;
 
 import java.time.LocalDateTime;

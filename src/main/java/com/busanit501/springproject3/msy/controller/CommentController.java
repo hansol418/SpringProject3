@@ -1,7 +1,7 @@
-package com.busanit501.springproject3.controller;
-
-import com.busanit501.springproject3.dto.CommentDto;
-import com.busanit501.springproject3.service.CommentService;
+package com.busanit501.springproject3.msy.controller;
+//
+import com.busanit501.springproject3.msy.dto.CommentDto;
+import com.busanit501.springproject3.msy.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +28,7 @@ public class CommentController {
     public String editCommentForm(@PathVariable("commentId") Long commentId, Model model) {
         CommentDto commentDto = commentService.getCommentById(commentId);
         model.addAttribute("commentDto", commentDto);
-        return "modifyComment"; // The template for editing comments
+        return "msy/modifyComment"; // The template for editing comments
     }
 
     @PostMapping("/comment/update/{commentId}")

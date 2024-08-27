@@ -1,9 +1,9 @@
-package com.busanit501.springproject3.controller;
-
-import com.busanit501.springproject3.dto.BoardDto;
-import com.busanit501.springproject3.entity.Comment;
-import com.busanit501.springproject3.service.BoardService;
-import com.busanit501.springproject3.service.CommentService;
+package com.busanit501.springproject3.msy.controller;
+//
+import com.busanit501.springproject3.msy.dto.BoardDto;
+import com.busanit501.springproject3.msy.entity.Comment;
+import com.busanit501.springproject3.msy.service.BoardService;
+import com.busanit501.springproject3.msy.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -73,7 +73,7 @@ public class BoardController {
         model.addAttribute("searchKeyword", searchKeyword);
         model.addAttribute("startNumber", startNumber); // Pass the start number to the view
 
-        return "board-list";
+        return "msy/board-list";
     }
 
 
@@ -87,13 +87,13 @@ public class BoardController {
         board.setAnswerList(comments);
 
         model.addAttribute("board", board); // Add board to model
-        return "board-detail"; // View name for board details
+        return "msy/board-detail"; // View name for board details
     }
 
     @GetMapping("/new")
     public String createBoardForm(Model model) {
         model.addAttribute("boardDto", new BoardDto());
-        return "board-form";
+        return "msy/board-form";
     }
 
     @PostMapping
@@ -106,7 +106,7 @@ public class BoardController {
     public String editBoardForm(@PathVariable Long id, Model model) {
         BoardDto board = boardService.getBoardById(id);
         model.addAttribute("boardDto", board);
-        return "board-form";
+        return "msy/board-form";
     }
 
     @PostMapping("/update")
