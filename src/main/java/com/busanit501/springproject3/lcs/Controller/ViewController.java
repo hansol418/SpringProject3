@@ -1,4 +1,4 @@
-package com.busanit501.springproject3.Controller;
+package com.busanit501.springproject3.lcs.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

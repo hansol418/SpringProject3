@@ -1,4 +1,4 @@
-package com.busanit501.springproject3.Controller;
+package com.busanit501.springproject3.lcs.Controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
