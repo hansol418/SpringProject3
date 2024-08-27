@@ -19,6 +19,8 @@ public class BoardDto {
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
     private List<Comment> answerList;
+    // New field for view count
+    private int viewCount;
 
 
     // Convert DTO to Entity
@@ -32,6 +34,7 @@ public class BoardDto {
         board.setFilepath(this.filepath);
         board.setCreateDate(this.createDate);
         board.setModifyDate(this.modifyDate);
+        board.setViewCount(this.viewCount);
         return board;
     }
 
@@ -47,6 +50,7 @@ public class BoardDto {
         dto.setCreateDate(board.getCreateDate());
         dto.setModifyDate(board.getModifyDate());
         dto.setAnswerList(board.getComments());
+        dto.setViewCount(board.getViewCount());
         return dto;
     }
 }

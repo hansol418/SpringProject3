@@ -22,4 +22,11 @@ public class Board {
     private LocalDateTime modifyDate;
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments;
+    // New field for view count
+    private int viewCount;
+
+    // Optionally, you can provide a method to increment the view count
+    public void incrementViewCount() {
+        this.viewCount++;
+    }
 }
