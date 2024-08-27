@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Board Form</title>
+  <style>
+    .file-image {
+      max-width: 500px; /* Adjust as needed */
+      max-height: 300px; /* Adjust as needed */
+    }
+  </style>
+</head>
+<body>
+<h1 th:if="${boardDto.id == null}">Create New Board</h1>
+<h1 th:if="${boardDto.id != null}">Edit Board</h1>
+<form th:action="@{/boards/update}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="id" th:value="${boardDto.id}"/>
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" th:value="${boardDto.title}" required/>
+  </div>
+  <div>
+    <label for="writer">Writer:</label>
+    <input type="text" id="writer" name="writer" th:value="${boardDto.writer}" required/>
+  </div>
+  <div>
+    <label for="boardContent">Content:</label>
+    <textarea id="boardContent" name="boardContent" rows="5" required th:text="${boardDto.boardContent}"></textarea>
+  </div>
+  <div>
+    <label for="file">File:</label>
+    <input type="file" id="file" name="file"/>
+    <div class="item-file" th:if="${boardDto.filename != null}">
+      <p>Current File:</p>
+      <a class="file-link" th:href="@{/files/{filename}(filename=${boardDto.filename})}" th:text="${boardDto.filename}"></a>
+      <br/>
+      <img class="file-image" th:src="@{/files/{filename}(filename=${boardDto.filename})}" alt="Current attached image"/>
+    </div>
+  </div>
+  <button type="submit">Save</button>
+</form>
+<a href="/boards">Back to List</a>
+</body>
+</html>
