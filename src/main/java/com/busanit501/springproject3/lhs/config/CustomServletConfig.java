@@ -15,11 +15,11 @@ public class CustomServletConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/js/**")
-                .addResourceLocations("classpath:/static/js/");
+        registry.addResourceHandler("lhs/js/**")
+                .addResourceLocations("classpath:/static/lhs/js/");
 
         registry.addResourceHandler("/css/**")
-                .addResourceLocations("classpath:/static/css/");
+                .addResourceLocations("classpath:/static/lhs/css/");
 
         registry.addResourceHandler("/fonts/**")
                 .addResourceLocations("classpath:/static/fonts/");
