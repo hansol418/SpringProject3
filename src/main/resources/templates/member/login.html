@@ -63,7 +63,40 @@
         e.stopPropagation()
         self.location = "/member/join"
 
-    })
+    });
+
+    // 로컬 저장소
+    // document.getElementById('loginForm').addEventListener('submit', function (e) {
+    //     e.preventDefault(); // 기본 폼 제출 동작을 막음
+    //
+    //     const username = document.getElementById('username').value;
+    //     const password = document.getElementById('password').value;
+    //
+    //     fetch('/member/login', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ mid: username, password: password })
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             if (data.accessToken && data.refreshToken) {
+    //                 localStorage.setItem('accessToken', data.accessToken);
+    //                 localStorage.setItem('refreshToken', data.refreshToken);
+    //                 alert('Login successful!');
+    //                 // 로그인 성공 후 리다이렉션이 필요하면 추가
+    //                 // window.location.href = '/dashboard';
+    //             } else {
+    //                 console.error('Error during authentication:', data.error);
+    //                 alert('Login failed. Please check your credentials.');
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Error during fetch:', error);
+    //             alert('An error occurred. Please try again.');
+    //         });
+    // });
 </script>
 </body>
 </html>

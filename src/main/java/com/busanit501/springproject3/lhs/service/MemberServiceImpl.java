@@ -75,18 +75,18 @@ public class MemberServiceImpl implements MemberService {
         String refreshToken = jwtUtil.generateRefreshToken(mid);
 
         // 토큰을 DB에 저장
-        Token token = new Token();
-        token.setMid(mid);
-        token.setAccessToken(accessToken);
-        token.setRefreshToken(refreshToken);
+//        Token token = new Token();
+//        token.setMid(mid);
+//        token.setAccessToken(accessToken);
+//        token.setRefreshToken(refreshToken);
 
-        try {
-            tokenRepository.save(token);
-            System.out.println("Token saved successfully for user: " + mid);
-        } catch (Exception e) {
-            System.err.println("Failed to save token for user: " + mid);
-            e.printStackTrace();
-        }
+//        try {
+//            tokenRepository.save(token);
+//            System.out.println("Token saved successfully for user: " + mid);
+//        } catch (Exception e) {
+//            System.err.println("Failed to save token for user: " + mid);
+//            e.printStackTrace();
+//        }
 
         return accessToken;
     }

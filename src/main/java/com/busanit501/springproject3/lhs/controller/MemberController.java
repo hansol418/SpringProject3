@@ -97,7 +97,22 @@ public class MemberController {
             return ResponseEntity.status(401).body(null); // 인증 실패 시 401 응답
         }
     }
-
+//    로그인 부분(로컬 저장소)
+//    @PostMapping("/login")
+//    public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest request) {
+//        Map<String, String> resultMap = new HashMap<>();
+//
+//        if (memberServiceImpl.authenticateUser(request.getMid(), request.getPassword())) {
+//            String accessToken = jwtUtil.generateAccessToken(request.getMid());
+//            String refreshToken = jwtUtil.generateRefreshToken(request.getMid());
+//            resultMap.put("accessToken", accessToken);
+//            resultMap.put("refreshToken", refreshToken);
+//            return ResponseEntity.ok(resultMap);
+//        } else {
+//            resultMap.put("error", "Invalid credentials");
+//            return ResponseEntity.status(401).body(resultMap); // 인증 실패 시 401 응답
+//        }
+//    }
     // 로그인 엔드포인트 추가
 //    @PostMapping("/login")
 //    public ResponseEntity<Map<String, String>> loginPost(@RequestBody MemberJoinDTO memberJoinDTO) {
@@ -258,7 +273,32 @@ public class MemberController {
         redirectAttributes.addFlashAttribute("result","회원가입 성공");
         return "redirect:/member/login";
     }
-
+    // 회원가입 후 JWT 반환(로컬저장소)
+//    @PostMapping("/join")
+//    public ResponseEntity<Map<String, String>> joinPost(@RequestBody MemberJoinDTO memberJoinDTO, @RequestParam(value = "profileImage", required = false) MultipartFile profileImage) {
+//        log.info("joinPost====================");
+//        String resultProfileImage = "";
+//        Map<String, String> resultMap = new HashMap<>();
+//
+//        if (profileImage != null && !profileImage.isEmpty()) {
+//            UploadResultDTO uploadResultDTO = memberService.uploadProfileImage(profileImage);
+//            resultProfileImage = uploadResultDTO.getLink();
+//            String[] arr = resultProfileImage.split("_");
+//            memberJoinDTO.setUuid(arr[1]);
+//            memberJoinDTO.setFileName(arr[2]);
+//        }
+//
+//        try {
+//            String accessToken = memberService.join(memberJoinDTO); // 토큰 생성 후 반환
+//            String refreshToken = memberService.generateRefreshToken(memberJoinDTO.getMid());
+//            resultMap.put("accessToken", accessToken);
+//            resultMap.put("refreshToken", refreshToken);
+//            return ResponseEntity.ok(resultMap); // 클라이언트에 토큰 반환
+//        } catch (MemberService.MidExistException e) {
+//            resultMap.put("error", "아이디 중복입니다");
+//            return ResponseEntity.badRequest().body(resultMap);
+//        }
+//    }
 }
 
 @Data
