@@ -39,11 +39,7 @@ public class BoardService {
     // Get a board by ID
     public BoardDto getBoardById(Long id) {
         return boardRepository.findById(id)
-                .map(board -> {
-                    board.incrementViewCount();  // Increment view count
-                    boardRepository.save(board);  // Save the updated board
-                    return convertEntityToDto(board);
-                })
+                .map(this::convertEntityToDto)
                 .orElseThrow(() -> new RuntimeException("Board not found"));
     }
 
@@ -140,7 +136,6 @@ public class BoardService {
         boardDto.setFilepath(board.getFilepath());
         boardDto.setCreateDate(board.getCreateDate());
         boardDto.setModifyDate(board.getModifyDate());
-        boardDto.setViewCount(board.getViewCount());
         return boardDto;
     }
 
@@ -154,7 +149,6 @@ public class BoardService {
         board.setFilepath(boardDto.getFilepath());
         board.setCreateDate(boardDto.getCreateDate());
         board.setModifyDate(boardDto.getModifyDate());
-        board.setViewCount(boardDto.getViewCount());
         return board;
     }
 }

@@ -34,27 +34,21 @@
         <p><strong>제목:</strong> <span th:text="${board.title}"></span></p>
         <p><strong>글쓴이:</strong> <span th:text="${board.writer}"></span></p>
         <p><strong>내용:</strong></p>
-        <pre style="height: 150px;" th:text="${board.boardContent}"></pre>
+        <pre th:text="${board.boardContent}"></pre>
 
         <!-- Display image if filename exists -->
-        <div class="item-file" th:if="${board.filename != null}" style="text-align: center;">
+        <div class="item-file" th:if="${board.filename != null}">
           첨부 파일:
           <a class="file-link" th:href="@{/files/{filename}(filename=${board.filename})}" th:text="${board.filename}"></a>
           <br/>
-          <img class="file-image" th:src="@{/files/{filename}(filename=${board.filename})}" alt="Attached image" style="display: block; margin: 0 auto;"/>
+          <img class="file-image" th:src="@{/files/{filename}(filename=${board.filename})}" alt="Attached image"/>
         </div>
-
 
         <div class="date-info">
           작성시간: <span th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></span>
         </div>
         <div th:if="${board.modifyDate != null}" class="date-info">
           수정날짜: <span th:text="${#temporals.format(board.modifyDate, 'yyyy-MM-dd HH:mm')}"></span>
-        </div>
-
-        <!-- View count display -->
-        <div class="view-count">
-          조회수: <span th:text="${board.viewCount}"></span>
         </div>
 
         <div class="action-buttons">
