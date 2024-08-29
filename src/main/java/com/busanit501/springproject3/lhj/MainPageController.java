@@ -1,4 +1,4 @@
-package com.busanit501.springproject3.lhj.controller;
+package com.busanit501.springproject3.lhj;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
