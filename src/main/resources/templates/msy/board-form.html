@@ -12,6 +12,7 @@
 
   <title>TripWithMe 페이지</title>
 
+  <link th:href="@{/css/board_msy.css}" rel="stylesheet"/>
   <link th:href="@{/css/common.css}" rel="stylesheet">
   <link th:href="@{/css/swiper-min.css}" rel="stylesheet">
   <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -69,110 +70,110 @@
 </div>
 </body>
 </html>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    /*margin: 20px;*/
-    /*background-color: #f4f4f4;*/
-  }
+<!--<style>-->
+<!--  body {-->
+<!--    font-family: Arial, sans-serif;-->
+<!--    /*margin: 20px;*/-->
+<!--    /*background-color: #f4f4f4;*/-->
+<!--  }-->
 
-  h1 {
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+<!--  h1 {-->
+<!--    color: #333;-->
+<!--    margin-bottom: 20px;-->
+<!--    text-align: center;-->
+<!--  }-->
 
-  .btn {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
+<!--  .btn {-->
+<!--    background-color: #007BFF;-->
+<!--    color: white;-->
+<!--    border: none;-->
+<!--    padding: 8px 12px;-->
+<!--    text-align: center;-->
+<!--    text-decoration: none;-->
+<!--    display: inline-block;-->
+<!--    font-size: 16px;-->
+<!--    margin: 4px 2px;-->
+<!--    cursor: pointer;-->
+<!--    border-radius: 4px;-->
+<!--  }-->
 
-  .btn:hover {
-    background-color: #0056b3;
-  }
+<!--  .btn:hover {-->
+<!--    background-color: #0056b3;-->
+<!--  }-->
 
-  .form-container {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    /*max-width: 600px;*/
-    margin: auto;
-  }
+<!--  .form-container {-->
+<!--    background-color: #fff;-->
+<!--    padding: 20px;-->
+<!--    border: 1px solid #ddd;-->
+<!--    border-radius: 5px;-->
+<!--    /*max-width: 600px;*/-->
+<!--    margin: auto;-->
+<!--  }-->
 
-  .form-group {
-    margin-bottom: 15px;
-  }
+<!--  .form-group {-->
+<!--    margin-bottom: 15px;-->
+<!--  }-->
 
-  .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+<!--  .form-group label {-->
+<!--    display: block;-->
+<!--    font-weight: bold;-->
+<!--    margin-bottom: 5px;-->
+<!--  }-->
 
-  .form-group input[type="text"],
-  .form-group textarea,
-  .form-group input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Ensures padding is included in the width */
-  }
+<!--  .form-group input[type="text"],-->
+<!--  .form-group textarea,-->
+<!--  .form-group input[type="file"] {-->
+<!--    width: 100%;-->
+<!--    padding: 10px;-->
+<!--    border: 1px solid #ccc;-->
+<!--    border-radius: 4px;-->
+<!--    box-sizing: border-box; /* Ensures padding is included in the width */-->
+<!--  }-->
 
-  .form-group textarea {
-    resize: vertical; /* Allows vertical resizing only */
-  }
+<!--  .form-group textarea {-->
+<!--    resize: vertical; /* Allows vertical resizing only */-->
+<!--  }-->
 
-  .file-section {
-    margin-top: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fafafa;
-  }
+<!--  .file-section {-->
+<!--    margin-top: 15px;-->
+<!--    padding: 10px;-->
+<!--    border: 1px solid #ddd;-->
+<!--    border-radius: 4px;-->
+<!--    background-color: #fafafa;-->
+<!--  }-->
 
-  .file-link {
-    color: #007BFF;
-    text-decoration: none;
-  }
+<!--  .file-link {-->
+<!--    color: #007BFF;-->
+<!--    text-decoration: none;-->
+<!--  }-->
 
-  .file-link:hover {
-    text-decoration: underline;
-  }
+<!--  .file-link:hover {-->
+<!--    text-decoration: underline;-->
+<!--  }-->
 
-  .file-image {
-    max-width: 500px; /* Adjust as needed */
-    max-height: 300px; /* Adjust as needed */
-    display: block;
-    margin-top: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
+<!--  .file-image {-->
+<!--    max-width: 500px; /* Adjust as needed */-->
+<!--    max-height: 300px; /* Adjust as needed */-->
+<!--    display: block;-->
+<!--    margin-top: 10px;-->
+<!--    border: 1px solid #ddd;-->
+<!--    border-radius: 4px;-->
+<!--  }-->
 
-  .btn-submit {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    display: block;
-    width: 100%;
-    box-sizing: border-box; /* Ensures padding is included in the width */
-  }
+<!--  .btn-submit {-->
+<!--    background-color: #28a745;-->
+<!--    color: white;-->
+<!--    border: none;-->
+<!--    padding: 10px 15px;-->
+<!--    font-size: 16px;-->
+<!--    cursor: pointer;-->
+<!--    border-radius: 4px;-->
+<!--    display: block;-->
+<!--    width: 100%;-->
+<!--    box-sizing: border-box; /* Ensures padding is included in the width */-->
+<!--  }-->
 
-  .btn-submit:hover {
-    background-color: #218838;
-  }
-</style>
+<!--  .btn-submit:hover {-->
+<!--    background-color: #218838;-->
+<!--  }-->
+<!--</style>-->
