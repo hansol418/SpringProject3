@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>공구 목록</h1>
+<table>
+    <thead>
+    <tr>
+        <th>번호</th>
+        <th>공구 이름</th>
+        <th>공구 간단 설명</th>
+        <th>이미지 파일</th>
+        <th>modDate</th>
+        <th>regDate</th>
+<!--        <th>공구 링크</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tool : ${list}">
+        <td><a th:href="@{/tool/detail/{id}(id=${tool.id})}" th:text="${tool.id}"></a></td>
+        <td><a th:href="@{/tool/detail/{id}(id=${tool.id})}" th:text="${tool.tool_name}">공구 이름</a></td>
+        <td><a th:href="@{/tool/detail/{id}(id=${tool.id})}">
+            <span th:text="${#strings.abbreviate(tool.description, 30)}">공구 설명</span>
+        </a>
+        </td>
+        <td><a th:href="@{/tool/detail/{id}(id=${tool.id})}" th:text="${tool.img_text}">이미지 파일</a></td>
+        <td th:text="${tool.modDate}">modDate</td>
+        <td th:text="${tool.regDate}">regDate</td>
+<!--        <td><a th:href="@{/tool/detail/{id}(id=${tool.id})}">상세 설명으로 이동</a></td>-->
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>

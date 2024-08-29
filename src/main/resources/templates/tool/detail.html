@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>공구 상세 설명 페이지</h1>
+<div>
+    <label>번호 : </label>
+    <span th:text="${detail.id}"></span>
+</div>
+<div>
+    <label>공구 이름 : </label>
+    <span th:text="${detail.tool_name}">Tool Name</span>
+</div>
+<div>
+    <label>공구 상세 설명 : </label>
+    <span th:text="${detail.description}">Description</span>
+</div>
+<div>
+    <label>이미지 파일 : </label>
+    <span th:text="${detail.img_text}">img_text</span>
+</div>
+<div>
+    <label>modDate : </label>
+    <span th:text="${detail.modDate}">modDate</span>
+</div>
+<div>
+    <label>regDate : </label>
+    <span th:text="${detail.regDate}">regDate</span>
+</div>
+<div>
+    <a href="/tool/list"> 돌아 가기 </a>
+</div>
+</body>
+</html>
