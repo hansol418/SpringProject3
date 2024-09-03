@@ -1,6 +1,8 @@
 package com.busanit501.springproject3.lcs.Controller;
 
 import com.busanit501.springproject3.lcs.Dto.ClassificationResponseDTO;
+import com.busanit501.springproject3.lcs.Dto.ImageDocument;
+import com.busanit501.springproject3.lcs.Service.ImageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpEntity;
@@ -10,6 +12,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +29,9 @@ import java.util.Map;
 @RestController
 public class ImageClassifyController {
 
+    @Autowired
+    private ImageService imageService;
+
     @PostMapping("/classify")
     public ResponseEntity<Map<String, String>> classifyImage(@RequestParam("image") MultipartFile image) {
         Map<String, String> result = new HashMap<>();
@@ -35,7 +41,17 @@ public class ImageClassifyController {
             return ResponseEntity.badRequest().body(result);
         }
 
-        String apiUrl = "http://localhost:8000/api/classify/";
+        // 먼저 이미지를 Base64로 인코딩하고 MongoDB에 저장
+        try {
+            ImageDocument imageDocument = imageService.saveImage(image);
+            result.put("imageId", imageDocument.getId());
+        } catch (IOException e) {
+            e.printStackTrace();
+            result.put("error", "Image encoding or saving error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
+        }
+
+        String apiUrl = "http://10.100.201.52:8000/api/classify/";
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + image.getOriginalFilename());
