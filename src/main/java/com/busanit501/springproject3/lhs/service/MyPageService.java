@@ -1,33 +1,28 @@
 package com.busanit501.springproject3.lhs.service;
 
+import com.busanit501.springproject3.lhs.entity.User;
 import com.busanit501.springproject3.lhs.repository.UserRepository;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.busanit501.springproject3.lhs.entity.User;
 
 import java.util.Optional;
 
 @Service
-@Log4j2
 public class MyPageService {
 
     @Autowired
     private UserRepository userRepository;
 
-    // 사용자 이름으로 사용자 정보 조회
-    public Optional<User> getUserByUsername(String username) {
-        // JPA User 엔티티를 반환하도록 수정
-        return userRepository.findByUsername(username);
-    }
+    @Autowired
+    private UserService userService;  // 이미 존재하는 UserService 활용
 
-    // 사용자 삭제
-    public void deleteUser(Long id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-            log.info("User deleted with ID: " + id);
+    // 사용자 이름으로 회원 탈퇴 처리
+    public void deleteUserByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            userService.deleteUser(user.get().getId()); // UserService의 deleteUser 활용
         } else {
-            log.warn("Failed to delete user: User not found with ID: " + id);
+            throw new RuntimeException("User not found");
         }
     }
 }
