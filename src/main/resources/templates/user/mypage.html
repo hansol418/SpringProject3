@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+</head>
+<body>
+<h1>{{ user.username }}님의 마이페이지</h1>
+<p>이메일: {{ user.email }}</p>
+<p>주소: {{ user.address }}</p>
+<p>전화번호: {{ user.phone }}</p>
+
+<!-- 회원탈퇴 버튼 -->
+<form action="/users/{{ user.id }}/confirmDelete" method="GET">
+    <button type="submit" class="btn btn-danger">회원 탈퇴</button>
+</form>
+</body>
+</html>

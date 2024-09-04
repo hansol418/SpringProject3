@@ -30,6 +30,58 @@ public class UserController {
     @Autowired
     PasswordEncoder bCryptPasswordEncoder;
 
+    // 마이페이지 보여주는 메서드
+    @GetMapping("/mypage")
+    public String showMyPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        // 로그인된 사용자의 정보를 가져옴
+        Optional<User> userOptional = userService.getUserByUsername(userDetails.getUsername());
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            model.addAttribute("user", user);  // 사용자 정보를 모델에 추가
+            return "user/mypage";  // 마이페이지로 이동
+        }
+
+        // 유저가 없으면 메인 페이지로 리다이렉트
+        return "redirect:/main";
+    }
+
+    // 비밀번호 확인 페이지
+    @GetMapping("/{id}/confirmDelete")
+    public String showConfirmDeleteForm(@PathVariable Long id, Model model) {
+        Optional<User> user = userService.getUserById(id);
+        if (user.isPresent()) {
+            model.addAttribute("user", user.get());
+            return "user/confirm-password";  // 비밀번호 확인 폼 페이지 반환
+        }
+        return "redirect:/main";  // 유저가 없을 경우 메인으로 리다이렉트
+    }
+
+    // 비밀번호 확인 후 탈퇴 처리
+    @PostMapping("/{id}/confirmDelete")
+    public String confirmDelete(@PathVariable Long id, @RequestParam("password") String password, Model model) {
+        Optional<User> userOptional = userService.getUserById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // 비밀번호 일치 여부 확인
+            if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
+                // 비밀번호가 일치하면 회원 탈퇴 처리
+                userService.deleteUser(id);
+                return "redirect:/users/login";  // 탈퇴 후 로그인 페이지로 리다이렉트
+            } else {
+                // 비밀번호가 일치하지 않으면 오류 메시지와 함께 다시 비밀번호 확인 페이지로
+                model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+                model.addAttribute("user", user);
+                return "user/confirm-password";
+            }
+        }
+
+        // 유저가 없으면 메인 페이지로 리다이렉트
+        return "redirect:/main";
+    }
+
     @GetMapping
     public String getAllUsers(@AuthenticationPrincipal UserDetails user, Model model) {
         List<User> users = userService.getAllUsers();
