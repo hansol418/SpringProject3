@@ -5,6 +5,7 @@ import com.busanit501.springproject3.hjt.repository.HjtRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.log4j.Log4j2;
+import org.apache.catalina.startup.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,9 @@ public class HjtService {
         return hjtRepository.findById(id);
     }
 
+    public HjtEntity saveTool(HjtEntity hjtEntity) {
+        return hjtRepository.save(hjtEntity);
+    }
 
 }
 
