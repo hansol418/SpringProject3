@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org"
+>
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -12,6 +15,7 @@
   <link th:href="@{/css/login_lhs.css}" rel="stylesheet"/>
 </head>
 <body class="align-middle">
+<div layout:fragment="content">
 <div class="container-fluid d-flex justify-content-center" style="height: 100vh">
 
   <div class="card align-self-center">
