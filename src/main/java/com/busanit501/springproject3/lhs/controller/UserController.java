@@ -90,7 +90,7 @@ public class UserController {
         } catch (IOException e) {
             throw new RuntimeException("Failed to save user profile image", e);
         }
-        return "redirect:/users";
+        return "redirect:/users/login";
         // Redirect to the list of users
     }
 

@@ -2,10 +2,11 @@
 <html lang="ko"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="www.thymeleaf.org"
-      layout:decorate="~{layout/base.html}"
->
+      layout:decorate="~{layout/base.html}">
+
+<!--&gt;-->
 <head>
-  <link rel="stylesheet" type="text/css" href="/css/join_lhs.css">
+<!--  <link rel="stylesheet" type="text/css" href="/css/join_lhs.css">-->
 </head>
 <body>
 <div layout:fragment="content">
@@ -138,5 +139,10 @@
   document.getElementById('sample6_detailAddress').addEventListener('input', updateFullAddress);
   document.getElementById('sample6_extraAddress').addEventListener('input', updateFullAddress);
 </script>
+
+<!--        <script th:src="@{/js/scripts.js}"></script>-->
+<!--<th:block layout:fragment="javascript">-->
+
+<!--</th:block>-->
 </body>
 </html>
