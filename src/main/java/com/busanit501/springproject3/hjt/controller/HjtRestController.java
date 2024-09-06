@@ -34,4 +34,6 @@ public class HjtRestController {
 //        log.info("hjtDetail" + hjtDetail);
         return hjtDetail;
     }
+
+
 }
