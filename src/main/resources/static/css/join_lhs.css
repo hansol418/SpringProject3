@@ -2,7 +2,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, rgba(74,144,226,0.6), rgba(144,19,254,0.6)),
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.7), rgba(0, 0, 0, 0.7)),
     url('/images/login/tool_join.jpg'); /* 배경 이미지 경로 */
     background-size: cover;
     background-position: center;
@@ -29,6 +29,7 @@ body {
     color: white; /* 글자 색상을 하얀색으로 설정 */
     font-size: 24px; /* 글자 크기 설정 (필요시 조정 가능) */
     font-weight: bold; /* 글자를 두껍게 */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 검은색 그림자 추가 */
 }
 
 .card-body {
