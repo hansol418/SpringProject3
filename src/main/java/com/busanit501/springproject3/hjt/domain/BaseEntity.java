@@ -26,4 +26,5 @@ public class BaseEntity {
     @JsonFormat(pattern = "yyyy-MM-dd HH-mm")
     @Column(name = "modDate")
     private LocalDateTime modDate;
+
 }

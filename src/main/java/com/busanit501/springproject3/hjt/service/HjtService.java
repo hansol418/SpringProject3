@@ -29,9 +29,9 @@ public class HjtService {
         return hjtRepository.findById(id);
     }
 
-    public HjtEntity saveTool(HjtEntity hjtEntity) {
-        return hjtRepository.save(hjtEntity);
-    }
+//    public HjtEntity saveTool(HjtEntity hjtEntity) {
+//        return hjtRepository.save(hjtEntity);
+//    }
 
 }
 
