@@ -1,7 +1,8 @@
 package com.busanit501.springproject3.lcs.Controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.busanit501.springproject3.lcs.Dto.ClassificationResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j2
 @RestController
 public class ImageClassifyController {
 
@@ -40,6 +42,7 @@ public class ImageClassifyController {
             image.transferTo(convFile);
 
             HttpPost uploadFile = new HttpPost(apiUrl);
+
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.addBinaryBody("image", convFile);
 
@@ -48,13 +51,34 @@ public class ImageClassifyController {
 
             HttpResponse response = httpClient.execute(uploadFile);
             HttpEntity responseEntity = response.getEntity();
+
+            log.info("API 연결확인:" + responseEntity);
+
             String apiResult = EntityUtils.toString(responseEntity, "UTF-8");
 
-            // Extract the predicted label
-            String predictedLabel = extractPredictedLabel(apiResult);
+            log.info("API 결과: " + apiResult);
+
+            // DTO로 변환
+            ClassificationResponseDTO classificationResponseDTO = extractClassificationResponseDTO(apiResult);
+            if (classificationResponseDTO == null) {
+                log.error("classificationResponseDTO가 null입니다. JSON 파싱에 실패했습니다.");
+                result.put("error", "DTO 변환에 실패했습니다.");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
+            }
+
+            log.info("DTO 내용: " + classificationResponseDTO);
+
+            String predictedLabel = classificationResponseDTO.getPredictedClassLabel();
+            if (predictedLabel == null) {
+                log.error("Predicted Label이 null입니다. JSON 응답에 문제가 있을 수 있습니다.");
+                result.put("error", "Predicted Label이 null입니다.");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
+            }
+            log.info("Predicted Label: " + predictedLabel);
+
             String videoUrl = getVideoUrl(predictedLabel);
 
-            // Only return the predicted label and the video URL
+            // DTO에서 필요한 값만 반환
             result.put("predictedLabel", predictedLabel);
             result.put("videoUrl", videoUrl);
 
@@ -62,6 +86,7 @@ public class ImageClassifyController {
                 System.err.println("Failed to delete the temporary file.");
             }
 
+            log.info("응답 데이터: " + result);
             return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,14 +95,13 @@ public class ImageClassifyController {
         }
     }
 
-    private String extractPredictedLabel(String apiResult) {
+    private ClassificationResponseDTO extractClassificationResponseDTO(String apiResult) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            JsonNode rootNode = mapper.readTree(apiResult);
-            return rootNode.path("predicted_class_label").asText();
+            return mapper.readValue(apiResult, ClassificationResponseDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return ""; // Return an empty string if there's an error
+            return null; // 예외 발생 시 null 반환
         }
     }
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -32,10 +33,13 @@ public class HjtController {
 
     @GetMapping("/detail/{id}")
     public String toolDetail(@PathVariable Long id, Model model) {
-        HjtEntity detail = hjtService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
+        HjtEntity detail = hjtService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
         model.addAttribute("detail", detail);
-        log.info("detail" + detail);
+//        String imageUrl = "http://localhost:8080/images/" + detail.getImageName();
+//        detail.setImageUrl(imageUrl);
+//        log.info("detail" + detail);
         return "tool/detail";
         }
-    }
+}
 

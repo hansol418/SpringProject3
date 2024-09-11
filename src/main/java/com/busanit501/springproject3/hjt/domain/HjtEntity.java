@@ -25,4 +25,8 @@ public class HjtEntity extends BaseEntity {
 
     @Column
     private String img_text;
+
+//    private String imageUrl;
+
+
 }
