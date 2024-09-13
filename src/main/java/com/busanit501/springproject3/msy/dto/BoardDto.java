@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.dto;
-//
+
 import com.busanit501.springproject3.msy.entity.Board;
 import com.busanit501.springproject3.msy.entity.Comment;
 import lombok.Data;
@@ -21,7 +21,6 @@ public class BoardDto {
     private List<Comment> answerList;
 
 
-    // Convert DTO to Entity
     public Board toEntity() {
         Board board = new Board();
         board.setId(this.id);
@@ -35,7 +34,6 @@ public class BoardDto {
         return board;
     }
 
-    // Convert Entity to DTO
     public static BoardDto fromEntity(Board board) {
         BoardDto dto = new BoardDto();
         dto.setId(board.getId());

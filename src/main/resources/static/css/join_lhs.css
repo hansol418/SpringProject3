@@ -1,17 +1,15 @@
-/* join.css */
-
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, rgba(20, 20, 20, 0.7), rgba(0, 0, 0, 0.7)),
-    url('/images/login/tool_join.jpg'); /* 배경 이미지 경로 */
+    url('/images/login/tool_join.jpg');
     background-size: cover;
     background-position: center;
-    background-blend-mode: overlay; /* 그라데이션과 이미지가 자연스럽게 섞이도록 설정 */
+    background-blend-mode: overlay;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* 컨텐츠를 상단에 정렬 */
+    align-items: flex-start;
     min-height: 100vh;
 }
 
@@ -26,10 +24,10 @@ body {
 .card-header {
     text-align: center;
     margin-bottom: 20px;
-    color: white; /* 글자 색상을 하얀색으로 설정 */
-    font-size: 24px; /* 글자 크기 설정 (필요시 조정 가능) */
-    font-weight: bold; /* 글자를 두껍게 */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 검은색 그림자 추가 */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 .card-body {

@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.controller;
-///
+
 import com.busanit501.springproject3.msy.dto.BoardDto;
 import com.busanit501.springproject3.msy.entity.Comment;
 import com.busanit501.springproject3.msy.service.BoardService;
@@ -33,35 +33,31 @@ public class BoardController {
                                @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                                @RequestParam(value = "page", defaultValue = "0") int page) {
 
-        // Ensure pageable includes sorting by createDate in descending order
         Pageable sortedPageable = PageRequest.of(page, pageable.getPageSize(), Sort.by("createDate").descending());
 
         Page<BoardDto> boards;
 
-        // Search keyword is present
         if (searchKeyword != null && !searchKeyword.isEmpty()) {
             boards = boardService.findAllItemsByKeyword(searchKeyword, sortedPageable);
         } else {
             boards = boardService.getAllBoards(sortedPageable);
         }
 
-        int nowPage = boards.getNumber(); // 0-based index for current page
-        int totalPages = boards.getTotalPages(); // Total number of pages
-        long totalElements = boards.getTotalElements(); // Total number of elements
+        int nowPage = boards.getNumber();
+        int totalPages = boards.getTotalPages();
+        long totalElements = boards.getTotalElements();
 
-        // Number of page numbers to show
         int pageSize = pageable.getPageSize();
 
-        // Calculate start and end page numbers
+
         int startPage = Math.max(nowPage - pageSize / 2, 0);
         int endPage = Math.min(startPage + pageSize - 1, totalPages - 1);
 
-        // Adjust startPage if endPage is less than pageSize
+
         if (endPage - startPage + 1 < pageSize) {
             startPage = Math.max(endPage - pageSize + 1, 0);
         }
 
-        // Calculate starting number for the current page
         long startNumber = totalElements - (nowPage * pageSize);
 
         model.addAttribute("boards", boards);
@@ -71,7 +67,7 @@ public class BoardController {
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("totalElements", totalElements);
         model.addAttribute("searchKeyword", searchKeyword);
-        model.addAttribute("startNumber", startNumber); // Pass the start number to the view
+        model.addAttribute("startNumber", startNumber);
 
         return "msy/board-list";
     }
@@ -80,14 +76,13 @@ public class BoardController {
 
     @GetMapping("/{id}")
     public String getBoardById(@PathVariable("id") Long id, Model model) {
-        BoardDto board = boardService.getBoardById(id); // Fetch board details
+        BoardDto board = boardService.getBoardById(id);
 
-        // Fetch and set comments
         List<Comment> comments = commentService.getCommentsByBoardId(id);
         board.setAnswerList(comments);
 
-        model.addAttribute("board", board); // Add board to model
-        return "msy/board-detail"; // View name for board details
+        model.addAttribute("board", board);
+        return "msy/board-detail";
     }
 
     @GetMapping("/new")
@@ -113,12 +108,9 @@ public class BoardController {
     public String updateBoard(@ModelAttribute BoardDto boardDto, @RequestParam("file") MultipartFile file,
                               RedirectAttributes redirectAttributes) {
         try {
-            // Check if file is not empty
             if (!file.isEmpty()) {
-                // Save or update the board with file
                 boardService.saveOrUpdateItemWithFile(boardDto, file);
             } else {
-                // Save or update the board without file
                 boardService.saveOrUpdateItem(boardDto);
             }
             redirectAttributes.addFlashAttribute("message", "Board updated successfully!");

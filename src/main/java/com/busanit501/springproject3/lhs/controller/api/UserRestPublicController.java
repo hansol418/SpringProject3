@@ -28,18 +28,14 @@ public class UserRestPublicController {
     @Autowired
     ImageUploadService imageUploadService;
 
-    // 파일 업로드 할 경우
     @PostMapping
     public ResponseEntity<User> createUser( @RequestPart("user") User user,
                                             @RequestParam(value = "profileImage", required = false) MultipartFile file) {
         try {
             log.info("image 확인 : " + file);
-//            @RequestPart를 사용하여 멀티파트 요청의 user 부분을 User 객체로 자동 변환
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            // 사용자 정보 저장
             User createdUser = userService.createUser(user);
 
-            // 파일이 존재할 경우 프로필 이미지 저장
             if (file !=null && !file.isEmpty()) {
                 userService.saveProfileImage(createdUser.getId(), file);
             }

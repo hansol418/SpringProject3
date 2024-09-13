@@ -7,15 +7,15 @@ import java.util.Map;
 @Data
 public class ClassificationResponseDTO {
     @JsonProperty("predicted_class_index")
-    private int predictedClassIndex;    // 예측된 클래스 인덱스
+    private int predictedClassIndex;
 
     @JsonProperty("predicted_class_label")
-    private String predictedClassLabel; // 예측된 클래스 레이블
+    private String predictedClassLabel;
 
 
-    private double confidence;          // 예측에 대한 신뢰도
+    private double confidence;
 
     @JsonProperty("class_confidences")
-    private Map<String, Double> classConfidences; // 각 클래스에 대한 확률
+    private Map<String, Double> classConfidences;
 }
 

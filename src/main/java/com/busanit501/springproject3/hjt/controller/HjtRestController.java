@@ -22,7 +22,7 @@ public class HjtRestController {
     @GetMapping("/list")
     public List<HjtEntity> listTools() {
         List<HjtEntity> hjtList = hjtService.findAll();
-        log.info("Fetched Tools: " + hjtList);  // 로그로 데이터 확인
+        log.info("Fetched Tools: " + hjtList);
         return hjtList;
     }
 
@@ -31,7 +31,6 @@ public class HjtRestController {
         HjtEntity detail = hjtService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid tool Id: " + id));
 
-        // 상태 코드 200 (OK)와 함께 데이터를 반환
         return ResponseEntity.ok(detail);
     }
 

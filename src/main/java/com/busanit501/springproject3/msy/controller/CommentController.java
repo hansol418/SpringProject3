@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.controller;
-//
+
 import com.busanit501.springproject3.msy.dto.CommentDto;
 import com.busanit501.springproject3.msy.service.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public class CommentController {
     public String editCommentForm(@PathVariable("commentId") Long commentId, Model model) {
         CommentDto commentDto = commentService.getCommentById(commentId);
         model.addAttribute("commentDto", commentDto);
-        return "msy/modifyComment"; // The template for editing comments
+        return "msy/modifyComment";
     }
 
     @PostMapping("/comment/update/{commentId}")
@@ -46,7 +46,7 @@ public class CommentController {
             return "redirect:/boards/" + commentDto.getBoardId();
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Failed to delete comment: " + e.getMessage());
-            return "redirect:/boards/" + commentId; // Redirect to a safe page if deletion fails
+            return "redirect:/boards/" + commentId;
         }
     }
 

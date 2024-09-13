@@ -19,7 +19,6 @@
         <p>No profile image uploaded.</p>
       </span>
       <span th:text="${user.username}"></span> -
-<!--      <a th:href="@{/users/{id}(id=${user.id})}">Details</a> |-->
       <a th:href="@{/users/{id}/edit(id=${user.id})}">Edit</a> |
       <a th:href="@{/users/{id}/delete(id=${user.id})}">Delete</a>
 
@@ -27,7 +26,6 @@
   </ul>
 </div>
 
-<!--자바스크립트 추가하는 영역-->
 <script layout:fragment="javascript" th:inline="javascript">
 
 </script>

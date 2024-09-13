@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -27,7 +26,6 @@ public class HjtController {
     public String listTools(Model model) {
         List<HjtEntity> list = hjtService.findAll();
         model.addAttribute("list", list);
-//        log.info("list" + list);
         return "tool/list";
     }
 
@@ -36,9 +34,6 @@ public class HjtController {
         HjtEntity detail = hjtService.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
         model.addAttribute("detail", detail);
-//        String imageUrl = "http://localhost:8080/images/" + detail.getImageName();
-//        detail.setImageUrl(imageUrl);
-//        log.info("detail" + detail);
         return "tool/detail";
         }
 }
