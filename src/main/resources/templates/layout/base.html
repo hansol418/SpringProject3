@@ -48,6 +48,9 @@
                             <a sec:authorize="isAnonymous()" th:href="@{/msy/join}">회원가입</a>
                             <a sec:authorize="isAnonymous()" th:href="@{/msy/login}">로그인</a>
                             <a sec:authorize="isAuthenticated()" th:href="@{/msy/logout}">로그아웃</a>
+                            <li class="nav-item " th:if="${user} != null and ${user.social.toString().equals('true')}">
+                                <a th:href="@{/users/kakaoLogout}">소셜 로그아웃</a>
+                            </li>
                             <a th:href="@{/lcs/list}">사이트맵</a>
                         </div><!--util-box : end-->
                     </div>

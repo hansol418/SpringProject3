@@ -5,6 +5,7 @@ import com.busanit501.springproject3.hjt.service.HjtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,15 +22,17 @@ public class HjtRestController {
     @GetMapping("/list")
     public List<HjtEntity> listTools() {
         List<HjtEntity> hjtList = hjtService.findAll();
-//        log.info("list" + list);
+        log.info("Fetched Tools: " + hjtList);  // 로그로 데이터 확인
         return hjtList;
     }
 
     @GetMapping("/detail/{id}")
-    public HjtEntity toolDetail(@PathVariable Long id) {
-        HjtEntity hjtDetail = hjtService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid tool Id:" + id));
-//        log.info("hjtDetail" + hjtDetail);
-        return hjtDetail;
+    public ResponseEntity<HjtEntity> toolDetail(@PathVariable Long id) {
+        HjtEntity detail = hjtService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid tool Id: " + id));
+
+        // 상태 코드 200 (OK)와 함께 데이터를 반환
+        return ResponseEntity.ok(detail);
     }
 
 }

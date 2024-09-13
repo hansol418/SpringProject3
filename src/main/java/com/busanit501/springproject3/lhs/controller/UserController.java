@@ -5,6 +5,7 @@ import com.busanit501.springproject3.lhs.entity.mongoEntity.ProfileImage;
 import com.busanit501.springproject3.lhs.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -26,6 +28,8 @@ import java.util.Optional;
 @RequestMapping("/users")
 @Log4j2
 public class UserController {
+    @Value("${spring.security.oauth2.client.registration.kakao.client-id}")
+    private String restAPIKEY;
 
     @Autowired
     private UserService userService;
@@ -39,7 +43,11 @@ public class UserController {
                               @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
         Page<User> userPage = userService.getAllUsersWithPage(pageable);
+        int startPage = Math.max(0, userPage.getNumber() - 5);
+        int endPage = Math.min(userPage.getTotalPages() - 1, userPage.getNumber() + 4);
         model.addAttribute("users", userPage.getContent());
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
         model.addAttribute("pageNumber", userPage.getNumber());
         model.addAttribute("totalPages", userPage.getTotalPages());
         model.addAttribute("pageSize", userPage.getSize());
@@ -67,6 +75,12 @@ public class UserController {
         // returns create-user.html
     }
 
+    @GetMapping("/token")
+    public String showLoginUserFormWithToken() {
+        return "user/login-token";
+        // returns create-user.html
+    }
+
     @GetMapping("/new")
     public String showCreateUserForm(@AuthenticationPrincipal UserDetails user, Model model) {
 //        model.addAttribute("user", new User());
@@ -90,7 +104,7 @@ public class UserController {
         } catch (IOException e) {
             throw new RuntimeException("Failed to save user profile image", e);
         }
-        return "redirect:/users/login";
+        return "redirect:/users";
         // Redirect to the list of users
     }
 
@@ -143,4 +157,11 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/kakaoLogout")
+    public String kakaoLogout(String error, String logout,
+                              RedirectAttributes redirectAttributes) {
+        return "redirect:https://kauth.kakao.com/oauth/logout?client_id="+restAPIKEY+"&logout_redirect_uri=http://localhost:8080/users/login";
+
+    }
+
 }

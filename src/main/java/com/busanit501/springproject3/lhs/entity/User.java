@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+//@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,13 +20,22 @@ public class User {
     private Long id;
 
     @Column(unique = true, nullable = false)
+    // 아이디 : lsy
     private String username;
 
     private String email;
-
+    //
     private String address;
 
     private String phone;
+
+    // 실제 이름 : 예)이상용
+    private String name;
+
+    // 소셜 로그인 여부
+    private boolean social;
+    // 소셜 로그인한 프로필 이미지, 미디어 서버 주소
+    private String profileImageServer;
 
     @Column(nullable = false)
     private String password;
