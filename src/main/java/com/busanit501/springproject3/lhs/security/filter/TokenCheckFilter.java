@@ -25,8 +25,7 @@ import java.util.Map;
 @Log4j2
 @RequiredArgsConstructor
 public class TokenCheckFilter extends OncePerRequestFilter {
-    //JWT 토큰을 검사하는 역할
-    // OncePerRequestFilter : 하나의 요청에 대해서 한번씩 동작하는 필터
+
 
     private final APIUserDetailsService apiUserDetailsService;
     private final JWTUtil jwtUtil;
@@ -50,11 +49,9 @@ public class TokenCheckFilter extends OncePerRequestFilter {
 
 
         try{
-//            validateAccessToken(request);
 
             Map<String, Object> payload = validateAccessToken(request);
             log.info("payload: " + payload);
-            //username
             String username = (String)payload.get("username");
 
             log.info("username: " + username);
@@ -74,7 +71,6 @@ public class TokenCheckFilter extends OncePerRequestFilter {
         }
 
 
-//        filterChain.doFilter(request, response);
     }
 
     private Map<String, Object> validateAccessToken(HttpServletRequest request) throws AccessTokenException {
@@ -85,7 +81,6 @@ public class TokenCheckFilter extends OncePerRequestFilter {
             throw new AccessTokenException(AccessTokenException.TOKEN_ERROR.UNACCEPT);
         }
 
-        //Bearer 생략
         String tokenType = headerStr.substring(0,6);
         String tokenStr =  headerStr.substring(7);
 

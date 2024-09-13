@@ -32,7 +32,7 @@
 
     <button class="btn btn-primary w-100 submitBtn" type="submit">Update</button>
     <h3> 새 이미지</h3>
-    <!-- 미리보기 이미지를 표시할 곳 -->
+
     <img id="imagePreview" src="#" alt="Image Preview" style="display:none; width: 200px; height: auto; margin-top: 10px;"/>
     <h3> 기존 이미지</h3>
     <span th:if="${user.profileImageId}">
@@ -47,7 +47,7 @@
   </div>
 
 </div>
-<!--자바스크립트 추가하는 영역-->
+
 <script layout:fragment="javascript" th:inline="javascript">
   function previewImage(input) {
     var reader = new FileReader();
@@ -59,7 +59,7 @@
     };
 
     if (input.files && input.files[0]) {
-      reader.readAsDataURL(input.files[0]); // 이미지를 읽어 미리보기로 표시
+      reader.readAsDataURL(input.files[0]);
     }
   }
 </script>

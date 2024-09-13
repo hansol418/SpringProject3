@@ -23,9 +23,9 @@ public class APIUserDTO extends User implements OAuth2User {
     private String phone;
     private String address;
     private boolean social;
-    //소셜 로그인 정보
+
     private Map<String, Object> props;
-    // 소셜 프로필 이미지 만 뽑기
+
     private String profileImageServer;
 
     public APIUserDTO(String username, String password, String email, String profileImageId,String name, String phone, String address, Collection<GrantedAuthority> authorities) {
@@ -39,7 +39,6 @@ public class APIUserDTO extends User implements OAuth2User {
         this.profileImageId = profileImageId;
     }
 
-    //카카오 인증 추가 후 , 생성자 수정
     public APIUserDTO(String username, String password, String email,
                       String profileImageId,String name, String phone,
                       String address, Collection<GrantedAuthority> authorities,
@@ -56,7 +55,6 @@ public class APIUserDTO extends User implements OAuth2User {
         this.social = social;
     }
 
-    // 카카오 인증 연동시 , 필수 재정의 메서드
     @Override
     public Map<String, Object> getAttributes() {
         return this.getProps();

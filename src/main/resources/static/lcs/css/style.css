@@ -15,7 +15,6 @@ html {
 
 }
 
-/*로고-회원가입,로그인*/
 
 .header-line {
   border-bottom: 1px solid #DEDEDE;
@@ -84,7 +83,6 @@ html {
   margin: 0;
 }
 
-/*네비게이션*/
 #bottom-wrap nav {
   width: 100%;
   display: flex;
@@ -115,7 +113,6 @@ nav .nav-box {
   z-index: 99;
 }
 
-/*하단 내려오는 nav바 위치변경*/
 nav .nav-box::before {
   content: '';
   display: block;
@@ -232,9 +229,6 @@ nav .nav-box .nav-btn:hover>a::after {
   width: 100%;
 }
 
-
-/***********************메인 슬라이드****************************/
-
 #main-slide #main-slide .slider {
   width: 100%;
 
@@ -296,7 +290,6 @@ nav .nav-box .nav-btn:hover>a::after {
   z-index: 50;
 }
 
-/******************센터 배너****************/
 #center-banner {
   border-radius: 7px;
   background: #FFF;
@@ -375,7 +368,6 @@ nav .nav-box .nav-btn:hover>a::after {
   margin-right: 13px;
 }
 
-/**********서비스 바로가기*************/
 #Quick {
   display: flex;
   justify-content: space-between;
@@ -396,13 +388,12 @@ nav .nav-box .nav-btn:hover>a::after {
 }
 
 #Quick .Quick-title .search-bar {
-  /*돋보기 위치*/
+
   position: relative;
 
 }
 
 #Quick .Quick-title .search-bar input {
-  /*검색 디자인*/
   border: 1px solid #814FC0;
   border-radius: 30px;
   padding: 0 20px;
@@ -413,12 +404,10 @@ nav .nav-box .nav-btn:hover>a::after {
 }
 
 #Quick .Quick-title .search-bar input::placeholder {
-  /*검색 디자인2*/
   color: #9A9A9A;
 }
 
 #Quick .Quick-title .search-bar a {
-  /*검색 돋보기 위치 및 크기*/
   position: absolute;
   top: 0;
   left: 180px;
@@ -468,8 +457,6 @@ nav .nav-box .nav-btn:hover>a::after {
   margin-top: 10px;
 }
 
-
-/**********triplist*************/
 #main-triptitle {
   display: flex;
   position: relative;
@@ -659,7 +646,6 @@ nav .nav-box .nav-btn:hover>a::after {
   right: 6px;
 }
 
-/*****************수강생후기********************/
 #review-warp {
   margin-bottom: 60px;
 }
@@ -796,8 +782,6 @@ nav .nav-box .nav-btn:hover>a::after {
   margin-left: 8px;
 }
 
-/****************기관소개**************/
-
 #information {
   margin-bottom: 60px;
   display: flex;
@@ -902,7 +886,6 @@ nav .nav-box .nav-btn:hover>a::after {
 }
 
 
-/****************배너+연락처**************/
 #last-info {
   display: flex;
   margin-bottom: 50px;
@@ -1006,8 +989,6 @@ nav .nav-box .nav-btn:hover>a::after {
   transform: translateY(3px);
 }
 
-/*******************sns***********************/
-
 #sns {
   display: flex;
   align-items: center;
@@ -1103,8 +1084,6 @@ nav .nav-box .nav-btn:hover>a::after {
   border: 0;
   padding-right: 0;
 }
-
-/***********************footer****************************/
 
 #last-info {
   width: 95%;
@@ -1244,7 +1223,6 @@ nav .nav-box .nav-btn:hover>a::after {
   opacity: 1;
 }
 
-/*trip 페이지*/
 
 .besttrip {
   text-align: center;
@@ -1254,19 +1232,19 @@ nav .nav-box .nav-btn:hover>a::after {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 15px; /* 양 끝 여백 추가 */
+  padding: 0 15px;
 }
 
 .trip-card {
-  width: calc(33.33% - 20px); /* 각 카드의 너비를 30%로 설정하고 양쪽 마진 고려 */
+  width: calc(33.33% - 20px);
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px; /* 카드 사이의 세로 간격 설정 */
-  margin: 10px; /* 카드 양쪽 마진 추가 */
-  box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 계산 */
+  margin-bottom: 16px;
+  margin: 10px;
+  box-sizing: border-box;
 }
 
 .image-container img {
@@ -1275,7 +1253,7 @@ nav .nav-box .nav-btn:hover>a::after {
 }
 
 .info-container {
-  padding: 16px; /* 내부 패딩 추가 */
+  padding: 16px;
 }
 
 .info-container p {
@@ -1286,13 +1264,10 @@ nav .nav-box .nav-btn:hover>a::after {
   text-overflow: ellipsis;
 }
 
-/* 숨기기 설정 */
 .info-container .coordinates {
   display: none;
 }
 
-/*여행 상세 페이지*/
-/* 스타일.css */
 
 .lcstripcontainer {
   display: flex;
@@ -1318,7 +1293,7 @@ nav .nav-box .nav-btn:hover>a::after {
 .lcstripdetailimage-container img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 10px; /* Add some space between the image and the address/operating date */
+  margin-bottom: 10px;
 }
 
 .lcstripdetailinfo-container {
@@ -1339,7 +1314,6 @@ nav .nav-box .nav-btn:hover>a::after {
   display: none;
 }
 
-/*festival 페이지*/
 
 .bestfestival {
   text-align: center;
@@ -1349,19 +1323,19 @@ nav .nav-box .nav-btn:hover>a::after {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 15px; /* 양 끝 여백 추가 */
+  padding: 0 15px;
 }
 
 .festival-card {
-  width: calc(33.33% - 20px); /* 각 카드의 너비를 30%로 설정하고 양쪽 마진 고려 */
+  width: calc(33.33% - 20px);
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px; /* 카드 사이의 세로 간격 설정 */
-  margin: 10px; /* 카드 양쪽 마진 추가 */
-  box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 계산 */
+  margin-bottom: 16px;
+  margin: 10px;
+  box-sizing: border-box;
 }
 
 .image-container img {
@@ -1381,13 +1355,11 @@ nav .nav-box .nav-btn:hover>a::after {
   text-overflow: ellipsis;
 }
 
-/* 숨기기 설정 */
 .info-container .coordinates {
   display: none;
 }
 
-/*축제 상세 페이지*/
-/* 스타일.css */
+
 
 .lcsfestivalcontainer {
   display: flex;
@@ -1413,7 +1385,7 @@ nav .nav-box .nav-btn:hover>a::after {
 .lcsfestivaldetailimage-container img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 10px; /* Add some space between the image and the address/operating date */
+  margin-bottom: 10px;
 }
 
 .lcsfestivaldetailinfo-container {
@@ -1441,9 +1413,6 @@ nav .nav-box .nav-btn:hover>a::after {
 
 
 
-
-
-/****************반응형**********************/
 
 @media all and (max-width:1200px) {
   #center-banner {
@@ -1535,12 +1504,10 @@ nav .nav-box .nav-btn:hover>a::after {
   }
 
   #notice .program .img-box a img {
-    /* width: 250px; */
+
     position: absolute;
     right: 0;
     top: 0;
-    /* height: 0; */
-    /* padding-top: 99px; */
     height: 100%;
   }
 

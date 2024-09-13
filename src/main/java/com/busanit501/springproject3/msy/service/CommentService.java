@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.service;
-//
+
 import com.busanit501.springproject3.msy.dto.CommentDto;
 import com.busanit501.springproject3.msy.entity.Board;
 import com.busanit501.springproject3.msy.entity.Comment;
@@ -30,12 +30,10 @@ public class CommentService {
         }
     }
 
-    //    display
     public List<Comment> getCommentsByBoardId(Long itemId) {
         return commentRepository.findByBoardId(itemId);
     }
 
-    //    edit
     public CommentDto getCommentById(Long commentId) {
         Optional<Comment> commentOptional = commentRepository.findById(commentId);
         if (commentOptional.isPresent()) {
@@ -50,7 +48,7 @@ public class CommentService {
         if (commentOptional.isPresent()) {
             Comment comment = commentOptional.get();
             comment.setContent2(commentDto.getContent2());
-            comment.setModifyDate(LocalDateTime.now()); // Update modifyDate
+            comment.setModifyDate(LocalDateTime.now());
             commentRepository.save(comment);
         } else {
             throw new RuntimeException("Comment not found");

@@ -24,14 +24,12 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    // 프로필 이미지, 몽고디비 연결
     @Autowired
     ProfileImageRepository profileImageRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // 페이징 처리
     public Page<User> getAllUsersWithPage(Pageable pageable) {
         return userRepository.findAll(pageable);
     }
@@ -66,14 +64,13 @@ public class UserService {
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        // 프로필 이미지 삭제
+
         if(user.getProfileImageId() != null && !user.getProfileImageId().isEmpty()) {
             deleteProfileImage(user);
         }
         userRepository.delete(user);
     }
 
-    //프로필 이미지 업로드, 레스트 형식
     public void saveProfileImage(Long userId, MultipartFile file) throws IOException {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -85,7 +82,6 @@ public class UserService {
         );
         ProfileImage savedImage = profileImageRepository.save(profileImage);
 
-        // Link the profile image to the user
         user.setProfileImageId(savedImage.getId());
         userRepository.save(user);
     }
@@ -95,7 +91,6 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("Image not found"));
     }
 
-    // 프로필 이미지만 삭제
     public void deleteProfileImage(User user) {
         String profileImageId = user.getProfileImageId();
 

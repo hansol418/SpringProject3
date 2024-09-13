@@ -1,4 +1,3 @@
-/* 기본 스타일 설정 */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,53 +5,51 @@ body {
     background-color: #f5f5f5;
 }
 
-/* 헤더 스타일 */
 header {
     background-color: #ffffff;
     border-bottom: 1px solid #ddd;
 }
 
-/* top-wrap 스타일 추가 */
 .top-wrap {
-    display: flex; /* 가로로 정렬 */
-    justify-content: space-between; /* 로고와 util-box 사이의 공간을 균등 분배 */
-    align-items: center; /* 수직 가운데 정렬 */
-    padding: 20px; /* 헤더 내 여백 설정 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
-/* 로고 스타일 */
+
 .logo-box img {
-    max-height: 50px; /* 로고 이미지의 최대 높이를 설정 */
-    width: auto;      /* 가로 길이는 자동으로 설정 */
-    height: auto;     /* 세로 길이도 자동으로 설정 */
+    max-height: 50px;
+    width: auto;
+    height: auto;
 }
 
-/* util-box 스타일 추가 */
+
 .util-box {
-    display: flex; /* 가로로 정렬 */
-    gap: 15px; /* 링크들 사이의 간격 */
-    margin-left: auto; /* 우측 정렬 */
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
 }
 
 .util-box a {
-    text-decoration: none; /* 링크 밑줄 제거 */
-    color: #333; /* 텍스트 색상 */
-    font-weight: bold; /* 글씨 두께 */
-    padding: 5px 10px; /* 여백 추가 */
-    transition: color 0.3s ease; /* 색상 전환 효과 */
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
 }
 
 .util-box a:hover {
-    color: #007BFF; /* 호버 시 링크 색상 변경 */
+    color: #007BFF;
 }
 
-/* 네비게이션 스타일 */
+
 header nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: flex-end; /* 오른쪽 정렬 */
+    justify-content: flex-end;
 }
 
 header nav ul li {
@@ -72,7 +69,7 @@ header nav ul li a:hover {
     background-color: #f0f0f0;
 }
 
-/* 푸터 스타일 */
+
 footer {
     background-color: #f5f5f5;
     text-align: center;

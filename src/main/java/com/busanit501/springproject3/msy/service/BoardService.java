@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.service;
-//
+
 import com.busanit501.springproject3.msy.dto.BoardDto;
 import com.busanit501.springproject3.msy.entity.Board;
 import com.busanit501.springproject3.msy.repository.BoardRepository;
@@ -23,27 +23,23 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-    // Get all boards with pagination
     public Page<BoardDto> getAllBoards(Pageable pageable) {
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(Sort.Order.desc("id")));
         Page<Board> boards = boardRepository.findAll(sortedPageable);
         return boards.map(this::convertEntityToDto);
     }
 
-    // Existing method with keyword search
     public Page<BoardDto> findAllItemsByKeyword(String keyword, Pageable pageable) {
         Page<Board> boards = boardRepository.findByTitleContainingOrderByCreateDateDesc(keyword, pageable);
         return boards.map(BoardDto::fromEntity);
     }
 
-    // Get a board by ID
     public BoardDto getBoardById(Long id) {
         return boardRepository.findById(id)
                 .map(this::convertEntityToDto)
                 .orElseThrow(() -> new RuntimeException("Board not found"));
     }
 
-    // Create a new board
     public BoardDto createBoard(BoardDto boardDto) {
         Board board = convertDtoToEntity(boardDto);
         board.setCreateDate(LocalDateTime.now());
@@ -51,12 +47,12 @@ public class BoardService {
         return convertEntityToDto(savedBoard);
     }
 
-    // Delete a board by ID
+
     public void deleteBoard(Long id) {
         boardRepository.deleteById(id);
     }
 
-    // Save or update a board
+
     public BoardDto saveOrUpdateItem(BoardDto boardDto) {
         Board board;
 
@@ -64,30 +60,27 @@ public class BoardService {
             Optional<Board> boardOpt = boardRepository.findById(boardDto.getId());
             if (boardOpt.isPresent()) {
                 board = boardOpt.get();
-                board.setModifyDate(LocalDateTime.now()); // Update modifyDate if the board exists
+                board.setModifyDate(LocalDateTime.now());
 
-                // Update other fields
                 board.setTitle(boardDto.getTitle());
                 board.setWriter(boardDto.getWriter());
                 board.setBoardContent(boardDto.getBoardContent());
                 board.setFilename(boardDto.getFilename());
                 board.setFilepath(boardDto.getFilepath());
 
-                // Keep existing createDate
                 board.setCreateDate(board.getCreateDate());
             } else {
                 throw new RuntimeException("Item not found for update");
             }
         } else {
             board = convertDtoToEntity(boardDto);
-            board.setCreateDate(LocalDateTime.now()); // Set createDate for new board
+            board.setCreateDate(LocalDateTime.now());
         }
 
         Board savedItem = boardRepository.save(board);
         return convertEntityToDto(savedItem);
     }
 
-    // Save or update a board with a file
     public BoardDto saveOrUpdateItemWithFile(BoardDto boardDto, MultipartFile file) throws IOException {
         String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
         UUID uuid = UUID.randomUUID();
@@ -101,23 +94,21 @@ public class BoardService {
             Optional<Board> boardOpt = boardRepository.findById(boardDto.getId());
             if (boardOpt.isPresent()) {
                 board = boardOpt.get();
-                board.setModifyDate(LocalDateTime.now()); // Update modifyDate if the board exists
+                board.setModifyDate(LocalDateTime.now());
 
-                // Update other fields
                 board.setTitle(boardDto.getTitle());
                 board.setWriter(boardDto.getWriter());
                 board.setBoardContent(boardDto.getBoardContent());
                 board.setFilename(fileName);
                 board.setFilepath("/files/" + fileName);
 
-                // Keep existing createDate
                 board.setCreateDate(board.getCreateDate());
             } else {
                 throw new RuntimeException("Item not found for update");
             }
         } else {
             board = convertDtoToEntity(boardDto);
-            board.setCreateDate(LocalDateTime.now()); // Set createDate for new board
+            board.setCreateDate(LocalDateTime.now());
             board.setFilename(fileName);
             board.setFilepath("/files/" + fileName);
         }

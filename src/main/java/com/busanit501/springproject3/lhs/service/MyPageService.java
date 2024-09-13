@@ -14,13 +14,12 @@ public class MyPageService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserService userService;  // 이미 존재하는 UserService 활용
+    private UserService userService;
 
-    // 사용자 이름으로 회원 탈퇴 처리
     public void deleteUserByUsername(String username) {
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
-            userService.deleteUser(user.get().getId()); // UserService의 deleteUser 활용
+            userService.deleteUser(user.get().getId());
         } else {
             throw new RuntimeException("User not found");
         }

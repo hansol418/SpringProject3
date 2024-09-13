@@ -58,7 +58,6 @@ public class ImageClassifyController {
 
             log.info("API 결과: " + apiResult);
 
-            // DTO로 변환
             ClassificationResponseDTO classificationResponseDTO = extractClassificationResponseDTO(apiResult);
             if (classificationResponseDTO == null) {
                 log.error("classificationResponseDTO가 null입니다. JSON 파싱에 실패했습니다.");
@@ -78,7 +77,6 @@ public class ImageClassifyController {
 
             String videoUrl = getVideoUrl(predictedLabel);
 
-            // DTO에서 필요한 값만 반환
             result.put("predictedLabel", predictedLabel);
             result.put("videoUrl", videoUrl);
 
@@ -101,7 +99,7 @@ public class ImageClassifyController {
             return mapper.readValue(apiResult, ClassificationResponseDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return null; // 예외 발생 시 null 반환
+            return null;
         }
     }
 

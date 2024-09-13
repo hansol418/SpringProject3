@@ -17,7 +17,6 @@ public class MyPageAPIController {
 
     private final MyPageService myPageService;
 
-    // 마이페이지 접근 (REST에서는 주로 JSON 데이터를 반환)
     @GetMapping
     public ResponseEntity<String> showMyPage(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails != null) {
@@ -29,7 +28,6 @@ public class MyPageAPIController {
         }
     }
 
-    // 탈퇴 확인 페이지 대신 탈퇴 가능 여부를 JSON으로 반환
     @GetMapping("/confirmDelete")
     public ResponseEntity<String> confirmDelete(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails != null) {
@@ -41,7 +39,6 @@ public class MyPageAPIController {
         }
     }
 
-    // 회원탈퇴 처리 (DELETE 방식 사용)
     @DeleteMapping("/deleteAccount")
     public ResponseEntity<String> deleteAccount(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails != null) {

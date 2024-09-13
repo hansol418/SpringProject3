@@ -1,10 +1,9 @@
-/* login_lhs.css */
 body {
     background: linear-gradient(135deg, rgba(113,183,230,0.6), rgba(155,89,182,0.6)),
-    url('/images/login/tool_login2.jpg'); /* 배경 이미지 경로 */
-    background-size: cover; /* 이미지가 화면을 꽉 채우도록 설정 */
-    background-position: center; /* 이미지가 중앙에 오도록 설정 */
-    background-blend-mode: overlay; /* 그라데이션과 이미지가 자연스럽게 섞이도록 설정 */
+    url('/images/login/tool_login2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
     display: flex;
     justify-content: center;
     align-items: center;

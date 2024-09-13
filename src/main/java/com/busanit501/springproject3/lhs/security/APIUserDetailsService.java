@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class APIUserDetailsService implements UserDetailsService {
 
-    //주입
+
     private final UserRepository apiUserRepository;
 
     @Override
@@ -33,7 +33,7 @@ public class APIUserDetailsService implements UserDetailsService {
 
         log.info("lsy APIUserDetailsService apiUser-------------------------------------");
 
-        // 일반 유저 로그인과, api 로그인 처리 확인 필요
+
         APIUserDTO dto =  new APIUserDTO(
                 apiUser.getUsername(),
                 apiUser.getPassword(),

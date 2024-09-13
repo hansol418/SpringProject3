@@ -1,5 +1,5 @@
 package com.busanit501.springproject3.msy.dto;
-//
+
 import com.busanit501.springproject3.msy.entity.Board;
 import com.busanit501.springproject3.msy.entity.Comment;
 import lombok.*;
@@ -15,7 +15,6 @@ public class CommentDto {
     private Long id;
     private Long boardId;
     private String content2;
-    //    private Long commentId;
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
 

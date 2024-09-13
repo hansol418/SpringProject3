@@ -2,15 +2,10 @@ package com.busanit501.springproject3.hjt.service;
 
 import com.busanit501.springproject3.hjt.domain.HjtEntity;
 import com.busanit501.springproject3.hjt.repository.HjtRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.startup.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -30,16 +25,14 @@ public class HjtService {
     }
 
     public void saveTools() {
-        // 망치 데이터
         HjtEntity hammer = HjtEntity.builder()
                 .tool_name("망치")
                 .description("뭔가를 깨거나 못 등을 박는 용도로 주로 쓰이며, 공사현장에서는 작업의 종류에 따라 길이, 무게, 재질(고무, 구리, 쇠 등)이 다른 여러 종류의 망치를 사용한다.\n" +
                         "보통 가정에서는 뒤에 노루발(못을 뽑을 때 사용하는 갈고리)이 달려 못을 박을 수도 있고 뽑을 수도 있는 장도리를 쓴다. 정확히는 슬레지해머처럼 큰 게 '망치'였고 작은 건 '마치'라고 했지만, 1980년대에도 이미 교과서에서 밖에 쓰지 않는 말이었고, 현재는 아예 쓰이지 않는 사어가 되었다. 한국에서는 슬렛지해머를 '오함마'라고 부르기도 한다.\n" +
-                        "말 그대로 쇠뭉치에 손잡이만 달아놓은 모양새라서 단순해 보이지만, 의외로 현대 철강 기술력의 집약체이기도 하다. 용도상 엄청난 충격을 지속적으로 견뎌내야 함과 동시에, 너무 무거워도 안 되고 너무 비싸도 안된다는 제약까지 지키면서 만들어야 하기 때문에 어지간한 기술력으로는 명함 조차 못 내민다. 잘 만든 망치머리의 강도는 상상을 초월할 정도로 단단하다.")
+                        "말 그대로 쇠뭉치에 손잡이만 달아놓은 모양새라서 단순해 보이지만, 의외로 현대 철강 기술력의 집약체이기도 하다. 용도상 엄청난 충격을 지속적으로 견뎌내야 함과 동시에, 너무 무거워도 안 되고 너무 비싸도 안된다는 제약까지 지키면서 만들어야 하기 때문에 어지간한 기술력으로는 명함 조차 못 내민다. 잘 만든 망치머리의 강도는 상상을 초월할 정도로 단단하다.\n ")
                 .img_text("hammer.jpg")
                 .build();
 
-        // 니퍼 데이터
         HjtEntity nipper = HjtEntity.builder()
                 .tool_name("니퍼")
                 .description("피복된 전선을 드러내기 위해 절연 전선의 피복을 벗기거나, 가는 전선이나 철사 등 선재를 절단할 때 쓰는 공구다.\n" +
@@ -48,7 +41,6 @@ public class HjtService {
                 .img_text("nipper.jpg")
                 .build();
 
-        // 줄자 데이터
         HjtEntity ruler = HjtEntity.builder()
                 .tool_name("줄자")
                 .description("줄로 된 자. 보통 플라스틱 막대 자로 잴 수 있는 길이보다 긴 길이를 잴 때 쓰인다.\n" +
@@ -58,7 +50,6 @@ public class HjtService {
                 .img_text("tape_measure.jpg")
                 .build();
 
-        // 그라인더 데이터
         HjtEntity grinder = HjtEntity.builder()
                 .tool_name("그라인더")
                 .description("고속회전하는 원반형태의 날이나 원형컵으로 표면을 매끄럽게 갈아내는 전동공구. 절단기와 비슷하다. 전기를 동력으로 사용하는것이 가장 흔하다.\n" +
@@ -67,7 +58,6 @@ public class HjtService {
                 .img_text("grinder.jpg")
                 .build();
 
-        // 드라이버 데이터
         HjtEntity driver = HjtEntity.builder()
                 .tool_name("드라이버")
                 .description("일상 생활에서 나사를 돌려 끼우고 빼는 도구. 정확한 이름은 스크루드라이버(Screwdriver)지만, 콩글리시로는 보통 드라이버로 불린다.\n" +
@@ -76,7 +66,6 @@ public class HjtService {
                 .img_text("screwdriver.jpg")
                 .build();
 
-        // 전동 드릴 데이터
         HjtEntity drill = HjtEntity.builder()
                 .tool_name("전동 드릴")
                 .description("전동공구의 얼굴마담으로 전기의 힘을 이용해 드릴비트나 스크류비트를 돌려 구멍을 뚫거나 나사를 고정시키는 공구이다.\n" +
@@ -85,7 +74,6 @@ public class HjtService {
                 .img_text("drill.jpg")
                 .build();
 
-        // 스패너 데이터
         HjtEntity spanner = HjtEntity.builder()
                 .tool_name("스패너")
                 .description("스크루드라이버와 비슷하게 너트나 볼트 따위를 죄고 풀며 물체를 조립하고 분해할 때 사용하는 도구. 단어 뜻자체는 '비틀다'는 뜻이다. 스패너나 렌치나 동일한 것으로, 영국, 호주, 뉴질랜드 같은 나라들에서는 스패너라고 부르고 미국식 영어로는 렌치라고 부른다.\n" +
@@ -95,7 +83,6 @@ public class HjtService {
                 .img_text("spanner.jpg")
                 .build();
 
-        // 공업용 가위 데이터
         HjtEntity scissors = HjtEntity.builder()
                 .tool_name("공업용 가위")
                 .description("가위는 두 개의 날을 교차시켜 물체를 자를 수 있도록 만들어진 도구로 실생활에서 널리 쓰인다.\n" +
@@ -104,7 +91,6 @@ public class HjtService {
                 .img_text("scissors.jpg")
                 .build();
 
-        // 톱 데이터
         HjtEntity saw = HjtEntity.builder()
                 .tool_name("톱")
                 .description("좁고 긴 쇠판에 날을 일정한 간격으로 이[齒]와 같이 내어 톱틀에 끼워서 둘 또는 혼자, 앞뒤로 문질러 나무나 돌을 자르는 데 사용하는 연장.\n" +
@@ -114,7 +100,6 @@ public class HjtService {
                 .img_text("saw.jpg")
                 .build();
 
-        // 버니어 캘리퍼스 데이터
         HjtEntity calipers = HjtEntity.builder()
                 .tool_name("버니어 캘리퍼스")
                 .description("길이나 높이, 너비 등 기계류의 혹은 사람의 신체 부위 치수를 정밀하게 측정하는 자의 일종이다. 공학도와 인류학자(골학 측정용)의 필수품이다.\n" +
@@ -123,7 +108,6 @@ public class HjtService {
                 .img_text("vernier_calipers.jpg")
                 .build();
 
-        // 모든 데이터를 저장
         hjtRepository.save(hammer);
         hjtRepository.save(nipper);
         hjtRepository.save(ruler);
@@ -136,8 +120,5 @@ public class HjtService {
         hjtRepository.save(calipers);
     }
 }
-//    public HjtEntity saveTool(HjtEntity hjtEntity) {
-//        return hjtRepository.save(hjtEntity);
-//    }
 
 

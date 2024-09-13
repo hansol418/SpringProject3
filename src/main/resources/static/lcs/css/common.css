@@ -1,11 +1,9 @@
 @charset "utf-8";
 
-/*googleips 웹폰트 css 파일 불러오기*/
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
 
-/* 저장된 글꼴 파일 선언*/
-/* @font-face { font-family : font_gothic;  font-weight:300;  
-                src : url(../font/NanumGothic.ttf); }  */
+
 @font-face {
       font-family: s-core5;
       src: url(../font/SCDream5.woff)}

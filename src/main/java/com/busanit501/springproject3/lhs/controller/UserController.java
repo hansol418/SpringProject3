@@ -52,7 +52,6 @@ public class UserController {
         model.addAttribute("totalPages", userPage.getTotalPages());
         model.addAttribute("pageSize", userPage.getSize());
 
-//        List<User> users = userService.getAllUsers();
         Optional<User> user1 = userService.getUserByUsername(user.getUsername());
         if (user1 != null && user1.isPresent()) {
             User user2 = user1.get();
@@ -66,30 +65,24 @@ public class UserController {
 
 
         return "user/users";
-        // returns users.html
     }
 
     @GetMapping("/login")
     public String showLoginUserForm() {
         return "user/login";
-        // returns create-user.html
     }
 
     @GetMapping("/token")
     public String showLoginUserFormWithToken() {
         return "user/login-token";
-        // returns create-user.html
     }
 
     @GetMapping("/new")
     public String showCreateUserForm(@AuthenticationPrincipal UserDetails user, Model model) {
-//        model.addAttribute("user", new User());
         model.addAttribute("user", user);
         return "user/create-user";
-        // returns create-user.html
     }
 
-    //프로필 이미지 업로드 형식으로, 몽고디비에 연결하는 코드
     @PostMapping("/new")
     public String createUser(@ModelAttribute User user, @RequestParam("profileImage") MultipartFile file) {
         log.info("lsy User created" + user, "multipart : " + file
@@ -105,14 +98,12 @@ public class UserController {
             throw new RuntimeException("Failed to save user profile image", e);
         }
         return "redirect:/users";
-        // Redirect to the list of users
     }
 
     @GetMapping("/{id}/edit")
     public String showUpdateUserForm(@PathVariable Long id, Model model) {
         userService.getUserById(id).ifPresent(user -> model.addAttribute("user", user));
         return "user/update-user";
-        // returns update-user.html
     }
 
     @PostMapping("/edit")
@@ -120,11 +111,11 @@ public class UserController {
 
         try {
             if (!file.isEmpty()) {
-                // 기존 프로필 삭제
+
                 Optional<User> loadUser = userService.getUserById(user.getId());
                 User loadedUser = loadUser.get();
                 userService.deleteProfileImage(loadedUser);
-                // 프로필 이미지 업데이트
+
                 userService.saveProfileImage(user.getId(), file);
                 userService.updateUser( user.getId(), user);
             } else {
@@ -135,14 +126,14 @@ public class UserController {
         }
 
         return "redirect:/users";
-        // Redirect to the list of users
+
     }
 
     @GetMapping("/{id}/delete")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return "redirect:/users";
-        // Redirect to the list of users
+
     }
 
     @GetMapping("/{id}/profileImage")

@@ -17,15 +17,15 @@ body {
     max-width: 100%;
     margin: 20px auto;
     padding: 20px;
-    /* 호버 시 이벤트를 막기 위해 transform과 box-shadow 속성을 제거합니다. */
+
 }
 
 .content-section {
     display: flex;
     padding: 20px;
     border-bottom: 1px solid #dddddd;
-    min-height: 400px; /* 컨테이너 최소 높이 설정 */
-    align-items: center; /* 수직 가운데 정렬 */
+    min-height: 400px;
+    align-items: center;
 }
 
 .image-upload {
@@ -42,8 +42,8 @@ body {
     margin-bottom: 15px;
     background-color: #f4f4f4;
     display: block;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 이미지에 그림자 추가 */
-    border-radius: 0; /* 둥근 모서리 제거 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
 }
 
 .image-upload img:empty {
@@ -53,7 +53,7 @@ body {
     background-color: #f4f4f4;
     margin-bottom: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 0; /* 둥근 모서리 제거 */
+    border-radius: 0;
 }
 
 .result-display {
@@ -61,10 +61,10 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* 수직 가운데 정렬 */
+    justify-content: center;
     background-color: #fafafa;
     border-radius: 10px;
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05); /* 내부 그림자 추가 */
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
 .result-display h2 {
@@ -84,7 +84,7 @@ body {
     background-color: #eef2f7;
     padding: 15px;
     border: 1px solid #dddddd;
-    min-height: 400px; /* 결과 영역의 최소 높이 설정 */
+    min-height: 400px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -112,10 +112,10 @@ body {
 
 .video-container iframe {
     width: 100%;
-    height: 540px; /* 비디오의 높이를 동일하게 설정 */
+    height: 540px;
     border: none;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* iframe에 그림자 추가 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .image-upload input[type="file"] {
@@ -126,7 +126,7 @@ body {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 0; /* 둥근 모서리 제거 */
+    border-radius: 0;
     transition: background-color 0.3s ease;
 }
 
@@ -134,7 +134,7 @@ body {
     background-color: #0056b3;
 }
 
-/* styles.css */
+
 body {
     font-family: Arial, sans-serif;
 }
