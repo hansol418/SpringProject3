@@ -105,14 +105,28 @@ public class ImageClassifyController {
 
     private String getVideoUrl(String predictedLabel) {
         switch (predictedLabel) {
-            case "상리요":
-                return "https://www.youtube.com/embed/lwB0xB1whyA?t=483";
-            case "음림":
-                return "https://www.youtube.com/embed/CowQ9rSOAmI";
-            case "설지":
-                return "https://www.youtube.com/embed/LxG6_qX2SBA?t=13";
+            case "공구톱":
+                return "https://www.youtube.com/embed/_iSGaOuexDs?si=7wN_9BMI_eDETmyj";
+            case "공업용가위":
+                return "https://www.youtube.com/embed/PUFCz9fv8as?si=qSxYTFiOyh60KnRE";
+            case "그라인더":
+                return "https://www.youtube.com/embed/u7D3_diB6RI?si=YvtKJ4npz7_FQSKk";
+            case "니퍼":
+                return "https://www.youtube.com/embed/Wq6fWnCWnpc?si=WB0jY9r-BTyJjl0m";
+            case "드라이버":
+                return "https://www.youtube.com/embed/UwPJTL35NlY?si=EKp1PMX_6eJeGAuf";
+            case "망치":
+                return "https://www.youtube.com/embed/lwJSNgASajs?si=qeWLHMbaDy-Kyjeb";
+            case "스패너":
+                return "https://www.youtube.com/embed/-OfQXPrZEw4?si=-y7wmTuadJIHbioW";
+            case "전동드릴":
+                return "https://www.youtube.com/embed/-qTMDoYMSqc?si=HJCZXUK_SNcQRoTr";
+            case "줄자":
+                return "https://www.youtube.com/embed/PZOod8DW9L8?si=oe-34fwObXULIJfX";
+            case "버니어 캘리퍼스":
+                return "https://www.youtube.com/embed/iTuMsyMcu9c?si=FvAgxpIU3x7RBInL";
             default:
-                return "https://www.youtube.com/embed/82W7E20T6UQ";
+                return "https://www.youtube.com/embed/i4xyVkhLcL8?si=C4BwODmGcG5YKXr2";
         }
     }
 }
