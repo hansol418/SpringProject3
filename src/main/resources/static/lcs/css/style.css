@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+/* 로고 크기 제한 */
+#header .top-wrap .logo-box img {
+  width: 150px; /* 원하는 크기로 조정 가능 */
+  height: auto; /* 비율 유지 */
+}
+
 html {
   scroll-behavior: smooth;
 }

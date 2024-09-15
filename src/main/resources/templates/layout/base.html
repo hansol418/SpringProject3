@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+
     <title>TripWithMe 페이지</title>
 
     <link th:href="@{/lcs/css/common.css}" rel="stylesheet">
@@ -38,7 +39,7 @@
         <div class="header-line">
             <div class="top-wrap inner">
                 <div class="logo-box">
-                    <a href="/lcs/list"><img src="/images/lcs_logo.png" alt="메인페이지 바로가기"></a>
+                    <a href="/main"><img src="/images/toollogo.png" alt="메인페이지 바로가기"></a>
                 </div>
                 <div class="util-box">
                     <a sec:authorize="isAnonymous()" th:href="@{/msy/join}">회원가입</a>
@@ -52,40 +53,6 @@
             </div>
         </div>
 
-
-        <div id="bottom-wrap" class="inner">
-            <nav>
-                <ul class="nav-box">
-                    <li class="nav-btn">
-                        <div>여행지</div>
-                        <ul class="nav-list">
-                            <li><a href="/lcs/trip">추천 여행지</a></li>
-                            <li><a href="/lcs/trip-random">랜덤 여행지</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-btn">
-                        <div>축제</div>
-                        <ul class="nav-list">
-                            <li><a href="/lcs/festival">추천 축제</a></li>
-                            <li><a href="/lcs/festival-random">랜덤 축제</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-btn">
-                        <div>맞춤 여행지</div>
-                        <ul class="nav-list">
-                            <li><a href="/lcs/trip-custom">맞춤 여행지</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-btn">
-                        <a href="/hjt/comunity">커뮤니티</a>
-                        <ul class="nav-list">
-                            <li><a href="hjt/realchat">트립톡</a></li>
-                            <li><a href="hjt/board">여행 게시판</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
     </header>
 
     <div layout:fragment="content">
