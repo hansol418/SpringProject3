@@ -119,6 +119,13 @@ public class HjtService {
         hjtRepository.save(saw);
         hjtRepository.save(calipers);
     }
+
+    public Optional<HjtEntity> findByToolName(String toolName) {
+        return hjtRepository.findAll().stream()
+                .filter(tool -> tool.getTool_name().replace(" ","").equalsIgnoreCase(toolName.trim()))
+                .findFirst();
+    }
+
 }
 
 
