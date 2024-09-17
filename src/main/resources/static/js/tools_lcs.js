@@ -24,10 +24,12 @@ document.getElementById("imageInput").addEventListener("change", function() {
                 } else {
                     // predictedLabel만 표시
                     document.getElementById("predictedLabel").textContent = `분석 결과: ${data.predictedLabel}`;
+                    document.getElementById("description").textContent = data.description;
                     // YouTube URL 업데이트
                     document.getElementById("videoFrame").src = data.videoUrl;
                 }
             })
             .catch(error => console.error("Error:", error));
     }
+
 });

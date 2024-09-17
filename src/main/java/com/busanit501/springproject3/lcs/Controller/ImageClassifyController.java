@@ -1,5 +1,7 @@
 package com.busanit501.springproject3.lcs.Controller;
 
+import com.busanit501.springproject3.hjt.domain.HjtEntity;
+import com.busanit501.springproject3.hjt.service.HjtService;
 import com.busanit501.springproject3.lcs.Dto.ClassificationResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
@@ -21,10 +23,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Log4j2
 @RestController
 public class ImageClassifyController {
+
+    private final HjtService hjtService;
+
+    public ImageClassifyController(HjtService hjtService) {
+        this.hjtService = hjtService;
+    }
 
     @PostMapping("/classify")
     public ResponseEntity<Map<String, String>> classifyImage(@RequestParam("image") MultipartFile image) {
@@ -73,6 +82,17 @@ public class ImageClassifyController {
                 result.put("error", "Predicted Label이 null입니다.");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
             }
+
+            Optional<HjtEntity> hjtEntityOpt = hjtService.findByToolName(predictedLabel);
+            if (hjtEntityOpt.isPresent()) {
+                String description = hjtEntityOpt.get().getDescription();
+                result.put("description", description); // description 추가
+                log.info("description 내용" + description);
+            } else {
+                log.warn("Tool description not found for predicted label: " + predictedLabel);
+                result.put("error", "Tool description을 찾을 수 없습니다.");
+            }
+
             log.info("Predicted Label: " + predictedLabel);
 
             String videoUrl = getVideoUrl(predictedLabel);
