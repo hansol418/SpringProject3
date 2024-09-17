@@ -261,6 +261,7 @@ nav .nav-box .nav-btn:hover>a::after {
 }
 
 #main-slide .slick-next {
+  background-image: url(../../images/main-slide-arrow-next.png);
   background-repeat: no-repeat;
   background-position: center;
   border: 0;
@@ -276,6 +277,7 @@ nav .nav-box .nav-btn:hover>a::after {
 }
 
 #main-slide .slick-prev {
+  background-image: url(../../images/main-slide-arrow-pre.png);
   background-repeat: no-repeat;
   background-position: center;
   border: 0;
