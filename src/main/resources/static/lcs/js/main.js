@@ -3,7 +3,7 @@ $(function () {
 	$("#main-slide .lazy").slick({
 		lazyLoad: 'ondemand', // ondemand progressive anticipated
 		infinite: true,
-		autoplay : true,			// 자동 스크롤 사용 여부
+		autoplay: true,			// 자동 스크롤 사용 여부
 		autoplaySpeed: 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
 
 	});
@@ -168,8 +168,8 @@ $(function () {
 		});
 	});
 
-	document.addEventListener('DOMContentLoaded', function() {
-		document.getElementById('tripCategory').addEventListener('change', function() {
+	document.addEventListener('DOMContentLoaded', function () {
+		document.getElementById('tripCategory').addEventListener('change', function () {
 			const selectedCategory = this.value;
 			window.location.href = `/lcs/search-result?category=${selectedCategory}`;
 		});
