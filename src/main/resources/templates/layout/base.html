@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
 
-    <title>TripWithMe 페이지</title>
+    <title>공구분석 페이지</title>
 
     <link th:href="@{/lcs/css/common.css}" rel="stylesheet">
     <link th:href="@{/lcs/css/swiper-min.css}" rel="stylesheet">
@@ -42,13 +42,10 @@
                     <a href="/main"><img src="/images/toollogo.png" alt="메인페이지 바로가기"></a>
                 </div>
                 <div class="util-box">
-                    <a sec:authorize="isAnonymous()" th:href="@{/msy/join}">회원가입</a>
-                    <a sec:authorize="isAnonymous()" th:href="@{/msy/login}">로그인</a>
-                    <a sec:authorize="isAuthenticated()" th:href="@{/msy/logout}">로그아웃</a>
-                    <li class="nav-item " th:if="${user} != null and ${user.social.toString().equals('true')}">
-                        <a th:href="@{/users/kakaoLogout}">소셜 로그아웃</a>
-                    </li>
-                    <a th:href="@{/lcs/list}">사이트맵</a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/users/join}">회원가입</a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/users/login}">로그인</a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/users/allLogout}">로그아웃</a>
+                    <a th:href="@{/main}">사이트맵</a>
                 </div>
             </div>
         </div>
@@ -160,9 +157,7 @@
                 Copyright ⓒ. All Rights Reserved.</p>
         </div>
     </footer>
-
-
+</div>
     <script layout:fragment="javascript"></script>
-
 </body>
 </html>
