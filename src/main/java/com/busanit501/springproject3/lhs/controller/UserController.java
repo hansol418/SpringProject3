@@ -3,6 +3,8 @@ package com.busanit501.springproject3.lhs.controller;
 import com.busanit501.springproject3.lhs.entity.User;
 import com.busanit501.springproject3.lhs.entity.mongoEntity.ProfileImage;
 import com.busanit501.springproject3.lhs.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,9 +14,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -148,11 +152,17 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
-    @GetMapping("/kakaoLogout")
-    public String kakaoLogout(String error, String logout,
-                              RedirectAttributes redirectAttributes) {
-        return "redirect:https://kauth.kakao.com/oauth/logout?client_id="+restAPIKEY+"&logout_redirect_uri=http://localhost:8080/users/login";
 
+    @GetMapping("/allLogout")
+    public String kakaoLogout(HttpServletRequest request, HttpServletResponse response,
+                              Authentication authentication) {
+
+        if (authentication != null) {
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+
+        return "redirect:https://kauth.kakao.com/oauth/logout?client_id=" + restAPIKEY
+                + "&logout_redirect_uri=http://localhost:8080/users/login";
     }
 
 }
