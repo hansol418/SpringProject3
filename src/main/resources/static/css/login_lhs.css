@@ -1,6 +1,6 @@
 body {
     background: linear-gradient(135deg, rgba(113,183,230,0.6), rgba(155,89,182,0.6)),
-    url('/images/login/tool_login2.jpg');
+    url('/static/images/login/tool_login2.jpg');
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;

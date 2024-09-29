@@ -22,23 +22,6 @@ $(function () {
 			});
 	});
 
-//모바일 메뉴
-	var menu = $('.mob_menu_wrap a.tit');
-	var submenu = $('.mob_menu_wrap a.sub_tit');
-
-	$('.mob_menu_open').click(function () {
-		$('#mob_gnb').addClass('on');
-		$('.layer_bg').addClass('on');
-		$('.mob_gnb_box').css()
-		scrollDisable();
-	})
-	$('.mob_menu_close, .layer_bg').click(function () {
-		$('#mob_gnb').removeClass('on');
-		$('.layer_bg').removeClass('on');
-		scrollAble();
-	})
-
-
 	menu.click(function () {
 		menu.not($(this)).removeClass('on');
 		$(this).toggleClass('on');
@@ -54,6 +37,7 @@ $(function () {
 		submenu.not($(this)).next('.depth_menu').slideUp('on');
 		$(this).next('.depth_menu').slideToggle('on');
 	})
+
 	//추천교육
 	$("#main-triptitle .regular").slick({
 		arrows: true,
@@ -98,27 +82,6 @@ $(function () {
 			sw = 0;
 		}
 	});
-	//공지사항 탭
-	$('.tabSet').each(function () {
-		var anchor = $(this).find('.tabs a');
-		var anchor_on = $(this).find('.tabs a.on');
-		var phref_on = anchor_on.attr('phref');
-		var this_panel = $(this).find('.panel')
-
-		$(phref_on).show();
-		anchor.each(function () {
-			var phref = $(this).attr('phref');
-
-			$(this).click(function () {
-				this_panel.hide();
-				anchor.removeClass('on'); //$('.tabs a')
-				$(phref).show();
-				$(this).addClass('on');
-
-			}) //click
-		}) //anchor
-	})  //tabSet
-
 
 	//기관소개
 	$("#information .regular").slick({
@@ -174,7 +137,6 @@ $(function () {
 			window.location.href = `/lcs/search-result?category=${selectedCategory}`;
 		});
 	});
-
-})//ready
+})
 
 

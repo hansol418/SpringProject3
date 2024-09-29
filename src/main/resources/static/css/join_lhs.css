@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, rgba(20, 20, 20, 0.7), rgba(0, 0, 0, 0.7)),
-    url('/images/login/tool_join.jpg');
+    url('/static/images/login/tool_join.jpg');
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
