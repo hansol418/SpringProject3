@@ -1,8 +1,8 @@
 package com.busanit501.springproject3.lcs.Controller;
 
+import com.busanit501.springproject3.hjt.domain.HjtEntity;
+import com.busanit501.springproject3.hjt.service.HjtService;
 import com.busanit501.springproject3.lcs.Dto.ClassificationResponseDTO;
-import com.busanit501.springproject3.lcs.Dto.ImageDocument;
-import com.busanit501.springproject3.lcs.Service.ImageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpEntity;
@@ -12,7 +12,6 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +23,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Log4j2
 @RestController
 public class ImageClassifyController {
 
-    @Autowired
-    private ImageService imageService;
+    private final HjtService hjtService;
+
+    public ImageClassifyController(HjtService hjtService) {
+        this.hjtService = hjtService;
+    }
 
     @PostMapping("/classify")
     public ResponseEntity<Map<String, String>> classifyImage(@RequestParam("image") MultipartFile image) {
@@ -41,17 +44,7 @@ public class ImageClassifyController {
             return ResponseEntity.badRequest().body(result);
         }
 
-        // 먼저 이미지를 Base64로 인코딩하고 MongoDB에 저장
-        try {
-            ImageDocument imageDocument = imageService.saveImage(image);
-            result.put("imageId", imageDocument.getId());
-        } catch (IOException e) {
-            e.printStackTrace();
-            result.put("error", "Image encoding or saving error: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
-        }
-
-        String apiUrl = "http://10.100.201.52:8000/api/classify/";
+        String apiUrl = "http://localhost:8000/api/classify/";
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + image.getOriginalFilename());
@@ -74,7 +67,6 @@ public class ImageClassifyController {
 
             log.info("API 결과: " + apiResult);
 
-            // DTO로 변환
             ClassificationResponseDTO classificationResponseDTO = extractClassificationResponseDTO(apiResult);
             if (classificationResponseDTO == null) {
                 log.error("classificationResponseDTO가 null입니다. JSON 파싱에 실패했습니다.");
@@ -90,11 +82,21 @@ public class ImageClassifyController {
                 result.put("error", "Predicted Label이 null입니다.");
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
             }
+
+            Optional<HjtEntity> hjtEntityOpt = hjtService.findByToolName(predictedLabel);
+            if (hjtEntityOpt.isPresent()) {
+                String description = hjtEntityOpt.get().getDescription();
+                result.put("description", description); // description 추가
+                log.info("description 내용" + description);
+            } else {
+                log.warn("Tool description not found for predicted label: " + predictedLabel);
+                result.put("error", "Tool description을 찾을 수 없습니다.");
+            }
+
             log.info("Predicted Label: " + predictedLabel);
 
             String videoUrl = getVideoUrl(predictedLabel);
 
-            // DTO에서 필요한 값만 반환
             result.put("predictedLabel", predictedLabel);
             result.put("videoUrl", videoUrl);
 
@@ -117,20 +119,34 @@ public class ImageClassifyController {
             return mapper.readValue(apiResult, ClassificationResponseDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
-            return null; // 예외 발생 시 null 반환
+            return null;
         }
     }
 
     private String getVideoUrl(String predictedLabel) {
         switch (predictedLabel) {
-            case "상리요":
-                return "https://www.youtube.com/embed/lwB0xB1whyA?t=483";
-            case "음림":
-                return "https://www.youtube.com/embed/CowQ9rSOAmI";
-            case "설지":
-                return "https://www.youtube.com/embed/LxG6_qX2SBA?t=13";
+            case "공구톱":
+                return "https://www.youtube.com/embed/_iSGaOuexDs?si=7wN_9BMI_eDETmyj";
+            case "공업용가위":
+                return "https://www.youtube.com/embed/PUFCz9fv8as?si=qSxYTFiOyh60KnRE";
+            case "그라인더":
+                return "https://www.youtube.com/embed/u7D3_diB6RI?si=YvtKJ4npz7_FQSKk";
+            case "니퍼":
+                return "https://www.youtube.com/embed/Wq6fWnCWnpc?si=WB0jY9r-BTyJjl0m";
+            case "드라이버":
+                return "https://www.youtube.com/embed/UwPJTL35NlY?si=EKp1PMX_6eJeGAuf";
+            case "망치":
+                return "https://www.youtube.com/embed/lwJSNgASajs?si=qeWLHMbaDy-Kyjeb";
+            case "스패너":
+                return "https://www.youtube.com/embed/-OfQXPrZEw4?si=-y7wmTuadJIHbioW";
+            case "전동드릴":
+                return "https://www.youtube.com/embed/-qTMDoYMSqc?si=HJCZXUK_SNcQRoTr";
+            case "줄자":
+                return "https://www.youtube.com/embed/PZOod8DW9L8?si=oe-34fwObXULIJfX";
+            case "버니어 캘리퍼스":
+                return "https://www.youtube.com/embed/iTuMsyMcu9c?si=FvAgxpIU3x7RBInL";
             default:
-                return "https://www.youtube.com/embed/82W7E20T6UQ";
+                return "https://www.youtube.com/embed/i4xyVkhLcL8?si=C4BwODmGcG5YKXr2";
         }
     }
 }

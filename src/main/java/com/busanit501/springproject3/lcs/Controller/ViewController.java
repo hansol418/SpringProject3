@@ -8,7 +8,8 @@ public class ViewController {
 
     @GetMapping("/classify")
     public String index() {
-        return "index";   // resources/templates/index.html 파일을 반환
+        return "index";
     }
 }
+
 
